@@ -15,9 +15,7 @@ export const SideNavigationMenu = (props: React.PropsWithChildren<SideNavigation
   const items = useMemo(normalizePath, [])
   const wrapperRef = useRef();
   
-  function normalizePath() { 
-    return navigation.map((item) => ({ ...item, expanded: isLarge, path: item.path && !/^\//.test(item.path) ? `/${item.path}` : item.path })) 
-  }
+  function normalizePath() { return navigation.map((item) => ({ ...item, expanded: isLarge, path: item.path && !/^\//.test(item.path) ? `/${item.path}` : item.path })) }
 
   const getWrapperRef = useCallback(
     (element) => {

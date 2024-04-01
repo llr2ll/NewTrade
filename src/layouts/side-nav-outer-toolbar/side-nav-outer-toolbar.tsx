@@ -8,7 +8,7 @@ import Drawer from 'devextreme-react/drawer';
 import { useNavigate } from 'react-router';
 import './side-nav-outer-toolbar.scss';
 
-export const SideNavOuterToolbar = ({ appInfo, children, navigationLayout }: React.PropsWithChildren<any>) => {
+export const SideNavOuterToolbar = ({ children, navigationLayout }: React.PropsWithChildren<any>) => {
   const navigate = useNavigate();
   const { isXSmall, isLarge } = useScreenSize();
   const [patchCssClass, onMenuReady] = useMenuPatch();
@@ -45,7 +45,7 @@ export const SideNavOuterToolbar = ({ appInfo, children, navigationLayout }: Rea
   );
 
   return <div className='side-nav-outer-toolbar'>
-    <AppHeader className='layout-header' menuToggleEnabled toggleMenu={toggleMenu} appInfo={appInfo} />
+    <AppHeader className='layout-header' menuToggleEnabled toggleMenu={toggleMenu}/>
     <Drawer className={['drawer layout-body', patchCssClass].join(' ')}
             opened={menuStatus === MenuStatus.Closed ? false : true}
             openedStateMode={isLarge ? 'shrink' : 'overlap'}
@@ -62,11 +62,7 @@ export const SideNavOuterToolbar = ({ appInfo, children, navigationLayout }: Rea
       </div>
       
       <Template name='menu'>
-        <SideNavigationMenu compactMode={menuStatus === MenuStatus.Closed} 
-                            selectedItemChanged={onNavigationChanged}
-                            navigation={navigationLayout}
-                            openMenu={temporaryOpenMenu} 
-                            onMenuReady={onMenuReady}/>
+        <SideNavigationMenu compactMode={true} selectedItemChanged={onNavigationChanged} navigation={navigationLayout} openMenu={temporaryOpenMenu} onMenuReady={onMenuReady}/>
       </Template>
     </Drawer>
   </div>

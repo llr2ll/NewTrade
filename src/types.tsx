@@ -6,9 +6,8 @@ import ODataStore from 'devextreme/data/odata/store';
 import React, { ReactNode } from 'react';
 
 export interface AppHeaderProps {
-  menuToggleEnabled: boolean;
-  appInfo: SideNavToolbarProps;
   toggleMenu: (e: ButtonTypes.ClickEvent) => void;
+  menuToggleEnabled: boolean;
   className?: string;
 }
 
@@ -115,4 +114,11 @@ export type GetCustomStore = {
     removeSuccessMessage?:  string;
     removeErrorMessage:     string;
   }
+}
+
+export interface Report {  
+  text: string,
+  icon: string,
+  path: string,
+  link: string
 }
