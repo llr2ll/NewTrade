@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#414141" />
+    <title>Trade</title>
+    <style>
+      #loader-div{
+        background: rgba(0,0,0,0.4); 
+        justify-content: center; 
+        flex-direction: column; 
+        align-content: center; 
+        align-items: center;
+        position: fixed; 
+        z-index: 1505;
+        display: flex;
+        height: 100%;
+        width: 100%; 
+        left: 0;
+        top: 0;
+      }
+
+      #loader-div h4 { color: white }
+
+      .loader { 
+        border: 8px solid #f3f3f3; border-radius: 50%; border-top: 8px solid #3498db; width: 120px; height: 120px; -webkit-animation: spin 2s linear infinite; 
+        animation: spin 2s linear infinite;
+      }
+
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body class="dx-viewport">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="loader-div">
+      <div class="loader"></div>
+      <h4>Aguardando Token...</h4>
+    </div>
+  </body>
+</html>

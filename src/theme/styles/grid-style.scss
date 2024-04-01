@@ -1,0 +1,77 @@
+#grid .dx-datagrid, #grid-detail .dx-datagrid { border-radius: 8px 8px 0 0 !important }
+
+#grid .dx-datagrid-headers, #grid-detail .dx-datagrid-headers{ border-radius: 8px 8px 0 0 !important }
+
+#grid .dx-datagrid-headers { background-color: var(--accent-color) }
+#grid-detail .dx-datagrid-headers { background-color: var(--detail-grid-color) }
+
+#grid .dx-header-row > td > .dx-datagrid-text-content, 
+#grid-detail .dx-header-row > td > .dx-datagrid-text-content { 
+    color: var(--base-text-color-light) !important; 
+    font-weight: 500; 
+}
+
+#grid .dx-datagrid-headers .dx-datagrid-table .dx-row > td,
+#grid-detail .dx-datagrid-headers .dx-datagrid-table .dx-row > td { 
+    text-align: center !important; 
+}
+
+#grid .dx-datagrid-pager, #grid-detail .dx-datagrid-pager { 
+    border: 1px solid var(--border-color); 
+    border-radius: 0 0 8px 8px 
+}
+
+#grid, #grid-detail .dx-button { border-radius: 15px !important }
+
+#grid .dx-datagrid,
+#grid .dx-datagrid-header-panel, 
+#grid .dx-datagrid-header-panel .dx-toolbar,
+#grid-detail .dx-datagrid,
+#grid-detail .dx-datagrid-header-panel, 
+#grid-detail .dx-datagrid-header-panel .dx-toolbar{ 
+    background: transparent !important; 
+    margin: 0 0 2px 0 !important;
+    padding: 0;
+}
+
+#grid .dx-list-item-content > .dx-texteditor, .dx-list-item-content.dx-texteditor, 
+.dx-toolbar-item-content > .dx-texteditor, .dx-toolbar-item-content.dx-texteditor, 
+
+#grid-detail .dx-list-item-content > .dx-texteditor, .dx-list-item-content.dx-texteditor, 
+.dx-toolbar-item-content > .dx-texteditor, .dx-toolbar-item-content.dx-texteditor
+{ border-radius: 15px }
+
+#grid .dx-datagrid,
+#grid .dx-datagrid-header-panel, 
+#grid .dx-datagrid-header-panel .dx-toolbar,
+
+#grid-detail .dx-datagrid,
+#grid-detail .dx-datagrid-header-panel, 
+#grid-detail .dx-datagrid-header-panel .dx-toolbar { 
+    background: transparent !important; 
+    margin: 0 0 2px 0 !important 
+}
+
+#grid .dx-datagrid-headers + .dx-datagrid-rowsview, .dx-datagrid-rowsview.dx-datagrid-after-headers,
+#grid-detail .dx-datagrid-headers + .dx-datagrid-rowsview, .dx-datagrid-rowsview.dx-datagrid-after-headers {
+    background: var(--base-bg)
+}
+
+#grid-detail .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused) > td, 
+#grid-detail .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused) > tr > td, 
+#grid-detail .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover > td, 
+#grid-detail .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover > tr > td{
+    background: #e0f4ea
+} 
+
+#grid .dx-datagrid-pager, #grid-detail .dx-datagrid-pager { border: none !important }
+
+#grid .dx-fileuploader-wrapper { padding: 0 !important }
+#grid .dx-fileuploader-input-wrapper::before { padding: 0 !important; margin: 0 !important}
+#grid .dx-fileuploader-input-wrapper::after { padding: 0 !important; margin: 0 !important}
+#grid .dx-fileuploader-input-wrapper .dx-button { height: 35px !important }
+#dropzone { display: none }
+
+#grid .dx-fileuploader-input-wrapper { padding: 0 !important }
+
+#grid-without-header  .dx-header-row { display: none; }

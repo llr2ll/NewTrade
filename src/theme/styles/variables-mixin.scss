@@ -1,0 +1,68 @@
+$theme: null !default;
+
+@use "/node_modules/devextreme/scss/widgets/material/colors" as * with ($color: "blue", $mode: $theme);
+@use "/node_modules/devextreme/scss/widgets/material/sizes" as * with ($size: "compact");
+@use '/node_modules/devextreme/scss/widgets/material/toolbar/sizes' as toolbar_sizes;
+@use "/node_modules/devextreme/scss/widgets/material/textEditor/colors" as *;
+@use "/node_modules/devextreme/scss/widgets/material/fieldset/sizes" as *;
+@use "/node_modules/devextreme/scss/widgets/material/button/mixins" as *;
+@use "/node_modules/devextreme/scss/widgets/material/button/sizes" as *;
+@use "/node_modules/devextreme/scss/widgets/material/popup/sizes" as *;
+@use "/node_modules/devextreme/scss/widgets/material/list/sizes" as *;
+@use "sass:math";
+@use "sass:color";
+
+:root, .app-theme-#{$theme} {
+  --footer-left-padding: #{calc((var(--side-panel-min-width) - $material-base-icon-size) / 2)};
+  --filled-texteditor-input-horizontal-padding: #{$material-field-value-horizontal-padding};
+  --scheduler-toolbar-height: #{calc(var(--button-height) + 2 * var(--theme-padding))};
+  --base-text-color-alpha: #{rgba($base-text-color, alpha($base-text-color) * 0.7)};
+  --button-height-theme-difference: #{calc((var(--theme-padding) - 10px) / 3)};
+  --tooltip-success-button-color: #{color.change($base-success, $alpha: 0.1)};
+  --tooltip-danger-button-color: #{color.change($base-danger, $alpha: 0.1)};
+  --background-gray-color: #{color.change($base-text-color, $alpha: 0.04)};
+  --button-height: #{calc(26px + var(--button-height-theme-difference))};
+  --drop-down-gnrc-button-height: #{$material-base-inline-widget-height};
+  --popup-toolbar-item-spacing: #{$material-popup-toolbar-item-spacing};
+  --list-padding-vertical: #{$material-list-item-vertical-padding};
+  --list-padding-left: #{$material-list-item-horizontal-padding};
+  --toolbar-height: #{toolbar_sizes.$material-toolbar-height};
+  --theme-padding: #{$material-button-horizontal-padding};
+  --texteditor-label-color: #{$texteditor-label-color};
+  --ligth-green: #e0f4ea;
+  --ligth-red: rgb(255, 162, 162);
+  --detail-grid-color: #414141;
+  --toolbar-margin-bottom: var(--content-padding);
+  --texteditor-edit-color: #{$texteditor-color};
+  --base-bg-darken-4: #{darken($base-bg, 4)};
+  --base-bg-darken-5: #{darken($base-bg, 5)};
+  --base-focus-color: #{$base-focus-color};
+  --header-toolbar-vertical-padding: 10px;
+  --border-color: #{$base-border-color};
+  --background-color: var(--base-bg);
+  --card-background: var(--base-bg);
+  --toolbar-vertical-padding: 0px;
+  --side-panel-min-width: 48px;
+  --cards-background: #FFF;
+  --calendar-width: 292px;
+  --content-padding: 16px;
+  --footer-height: 70px;
+  --base-bg: #{$base-bg};
+
+  @if $theme == dark {
+    --side-panel-background: var(--base-bg-darken-5);
+    --card-background: var(--base-bg-darken-5); 
+    --base-text-color-light: #414141;
+    --subtitle-text-color: #fff;
+    --card-hover: #14344399;
+    --accent-color: #87f275; 
+    --base-text-color: #fff;
+  } @else {
+    --side-panel-background: #f9f8f8;
+    --subtitle-text-color: #414141;
+    --base-text-color-light: #fff;
+    --base-text-color: #414141;
+    --accent-color: #286b2a;
+    --card-hover: #f0f9fd;
+  }
+}

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root { display: none }
+
+code { font-family: 'Montserrat', sans-serif }
+
+.view-wrapper { display: flex; overflow: hidden }
+
+.back-btn{ margin: 5px 0px 20px 1px }
+.back-btn .dx-toolbar-before{ width: 100%; padding-right: 30px !important }
+.back-btn .dx-toolbar-before > div:nth-child(1){ padding-right: 30px !important }
+.back-btn .dx-toolbar-before > div:nth-child(2){ width: 100%; padding-right: 30px !important }
+
+html { scroll-behavior: smooth }
+
+::-webkit-scrollbar { width: 5px }
+
+::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 5px }
+ 
+::-webkit-scrollbar-thumb { background: #888; border-radius: 4px }
+
+.dx-dialog-wrapper > .dx-overlay-content{
+  height: 200px !important;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px !important;
+}
+
+.dx-dialog-wrapper > .dx-overlay-content > .dx-popup-content{ 
+  font-weight: bold; 
+  font-size: 20px;
+}
+
+.dx-dialog-wrapper > .dx-overlay-content > .dx-popup-title { 
+  border-bottom: none !important; 
+  height: 0;
+  width: 0;
+  padding: 0 !important
+}
+
+.dx-toolbar-button .dx-dialog-button{
+  border-radius: 8px !important;
+  color: white !important;
+  margin-top: 10px;
+  width: 100px;
+  height: 35px;
+}
+
+.dx-toolbar-button:nth-child(1) .dx-dialog-button{
+  background-color: #198f51 !important;
+  border-color: #198f51 !important;
+}
+
+.dx-toolbar-button:nth-child(2) .dx-dialog-button{
+  background-color: #d21c1c !important;
+  border-color: #d21c1c !important;
+}
+
+.dx-dialog-button:hover {
+  color: #FFFFFF !important;
+  background-color: #707070 !important;
+  border-color: #707070 !important;
+}
+
+.info-text input{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.info-text-field { margin: 50px 0 !important }
+
+.dx-field-item-label-text{ 
+  font-weight: bold; 
+  color: var(--base-text-color) !important; 
+  margin-bottom: 5px
+}
+
+.dx-field-label{ 
+  font-weight: bold; 
+  color: var(--base-text-color) !important; 
+  margin-bottom: 5px
+}
+
+.dx-button { border-radius: 15px !important }
+
+.dx-dialog-wrappe .dx-button.dx-button-success { background-color: #198f51 !important }
+
+.dx-dialog-wrappe .dx-button.dx-button-success:hover { background-color: #19834b !important }
+
+.dx-dialog-wrappe .dx-button.dx-button-success.dx-state-disabled { background-color: rgba(0, 0, 0, 0.1) !important; color: #414141 }
+
+.dx-datagrid .dx-link { color: var(--accent-color) !important }
