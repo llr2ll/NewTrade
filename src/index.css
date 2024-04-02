@@ -103,3 +103,5 @@ html { scroll-behavior: smooth }
 .dx-datagrid .dx-link { color: var(--accent-color) !important }
 
 .page-padding { height: 100%; padding: var(--content-padding) }
+
+.dx-list-item { cursor: initial }

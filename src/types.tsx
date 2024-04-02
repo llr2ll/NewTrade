@@ -1,4 +1,4 @@
-import { DataGrid, Form, LoadPanel, Popup } from 'devextreme-react';
+import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, Popup, SelectBox } from 'devextreme-react';
 import { DataSourceOptions } from 'devextreme/data/data_source';
 import { TreeViewTypes } from 'devextreme-react/tree-view';
 import { ButtonTypes } from 'devextreme-react/button';
@@ -47,12 +47,15 @@ export interface DataStore {
 
 export interface sort { selector: string, desc: boolean }
 
-export type IDevexForm = React.MutableRefObject<Form>
-export type IForm = React.RefObject<HTMLFormElement>
+export type IDropDownBox = React.MutableRefObject<DropDownBox>
+export type ISelectBox = React.MutableRefObject<SelectBox>
+export type ILoadPanel = React.MutableRefObject<LoadPanel>
 export type IFormSubmit = React.FormEvent<HTMLFormElement>
 export type IDatagrid = React.MutableRefObject<DataGrid>
-export type ILoadPanel = React.MutableRefObject<LoadPanel>
-export type IPopup = React.MutableRefObject<Popup>
+export type IGalery = React.MutableRefObject<Gallery>
+export type IDevexForm = React.MutableRefObject<Form>
+export type IForm = React.RefObject<HTMLFormElement>
+export type IList = React.RefObject<List>
 
 export interface OrderType {
   InResultId:    number;

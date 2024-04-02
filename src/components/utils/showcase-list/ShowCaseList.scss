@@ -1,0 +1,101 @@
+.ShowCaseCard{
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: var(--base-text-color);
+    letter-spacing: 0.01071em;
+    background-color: var(--card-background);
+    font-size: 0.875rem;
+    border-radius: 4px;
+    line-height: 1.43;
+    overflow: hidden;
+    font-weight: 400;
+    height: 447px;
+    width: 345px;
+    margin: 0
+}
+
+.ShowCaseCard .dx-button .dx-icon { font-size: 1.5rem }
+
+.ShowCaseCard > header {
+    align-items: center;
+    padding: 16px;
+    display: flex;
+    height: 72px;
+    width: 100%;
+}
+
+.ShowCaseCard > header > div:nth-child(1) {
+    margin-right: 16px;
+    height: 40px;
+    width: 40px;
+}
+
+.ShowCaseCard > header > div:nth-child(1) > div{
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #fff;
+    background-color: #bdbdbd;
+    background-color: #f44336;
+}
+
+
+.ShowCaseCard > header > p {
+    text-transform: lowercase;
+    white-space: normal;
+    width: 228px;
+    margin: 0
+}
+
+.ShowCaseCard > main { height: 324px }
+
+.ShowCaseCard > main > img { height: 194px; width: 100% }
+
+.ShowCaseCard > main > div { 
+    padding: 16px; 
+    width: 100%;
+}
+
+.ShowCaseCard > main > div > ul {
+    list-style: square;
+    padding: 0;
+    margin: 0
+}
+
+.ShowCaseCard > main > div > ul > li { text-overflow: ellipsis; overflow: hidden }
+
+.ShowCaseCard > main > div > ul > li > strong { display: inline-block; width: 145px }
+
+.ShowCaseCard > footer { 
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 8px; 
+    height: 56px; 
+}
