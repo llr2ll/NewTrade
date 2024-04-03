@@ -1,42 +1,39 @@
+import { ISelectBox, ITileView, InitialFilters } from "../../types";
 import { ShowCaseList, ShowCaseSelects } from "../../components";
 import { Button, ScrollView } from "devextreme-react";
-import { SelectsRefs } from "../../Context";
-import { ISelectBox } from "../../types";
-import { useRef } from "react";
+import { ShowCaseContext } from "../../Context";
+import { useRef, useState } from "react";
 
 export function Showcase() {
+  const [filters, setFilters] = useState(InitialFilters)
   const neighborhoodRef:ISelectBox = useRef(null as any);
+  const showCaseListRef:ITileView = useRef(null as any);
   const stateRef:ISelectBox = useRef(null as any);
   const storeRef:ISelectBox = useRef(null as any);
   const typeRef:ISelectBox = useRef(null as any); 
   const cityRef:ISelectBox = useRef(null as any);
 
-  function refresh(){
-    neighborhoodRef.current.instance.repaint()
-    stateRef.current.instance.repaint()
-    storeRef.current.instance.repaint()
-    typeRef.current.instance.repaint()
-    cityRef.current.instance.repaint()
-  }
-
   return <ScrollView className='view-wrapper-scroll page-padding'>
     <section style={{ width: "100%", height: "100%" }}>
-      <SelectsRefs.Provider value={{
+      <ShowCaseContext.Provider value={{
+        showCaseListRef: showCaseListRef,
         neighborhoodRef: neighborhoodRef,
+        setFilters:      setFilters,
         stateRef:        stateRef,
         storeRef:        storeRef,
+        filters:         filters, 
         typeRef:         typeRef,
         cityRef:         cityRef
       }}>
 
         <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <ShowCaseSelects refresh={refresh}/>
+          <ShowCaseSelects/>
 
-            <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={refresh} stylingMode='text'/>
+          <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={() => showCaseListRef.current?.instance.repaint()} stylingMode='text'/>
         </div>
 
-        <ShowCaseList refresh={refresh}/>
-      </SelectsRefs.Provider>
+        <ShowCaseList/>
+      </ShowCaseContext.Provider>
     </section>
   </ScrollView>
 }

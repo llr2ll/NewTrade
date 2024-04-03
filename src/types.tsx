@@ -1,4 +1,4 @@
-import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, Popup, SelectBox } from 'devextreme-react';
+import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, Popup, SelectBox, TileView } from 'devextreme-react';
 import { DataSourceOptions } from 'devextreme/data/data_source';
 import { TreeViewTypes } from 'devextreme-react/tree-view';
 import { ButtonTypes } from 'devextreme-react/button';
@@ -55,6 +55,7 @@ export type IDatagrid = React.MutableRefObject<DataGrid>
 export type IGalery = React.MutableRefObject<Gallery>
 export type IDevexForm = React.MutableRefObject<Form>
 export type IForm = React.RefObject<HTMLFormElement>
+export type ITileView = React.RefObject<TileView>
 export type IList = React.RefObject<List>
 
 export interface OrderType {
@@ -118,10 +119,28 @@ export type GetCustomStore = {
     removeErrorMessage:     string;
   }
 }
-
 export interface Report {  
   text: string,
   icon: string,
   path: string,
   link: string
+}
+
+export const InitialFilters = { 
+  TIPO_COMPOSICAO_TRADE: null, 
+  NOME_REDUZIDO: null, 
+  ESTADO: null, 
+  CIDADE: null, 
+  BAIRRO: null
+}
+
+export interface IShowCaseContext {
+  neighborhoodRef: ISelectBox, 
+  stateRef:        ISelectBox, 
+  storeRef:        ISelectBox, 
+  typeRef:         ISelectBox, 
+  cityRef:         ISelectBox, 
+  showCaseListRef: ITileView,
+  setFilters:      Function,
+  filters:         typeof InitialFilters
 }

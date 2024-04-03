@@ -1,18 +1,13 @@
+import { IShowCaseContext, InitialFilters } from "./types";
 import { createContext } from "react";
-import { ISelectBox } from "./types";
 
-interface ISelectsRefs {
-    neighborhoodRef: ISelectBox, 
-    stateRef:        ISelectBox, 
-    storeRef:        ISelectBox, 
-    typeRef:         ISelectBox, 
-    cityRef:         ISelectBox 
-}
-
-export const SelectsRefs = createContext<ISelectsRefs>({
+export const ShowCaseContext = createContext<IShowCaseContext>({
+    showCaseListRef: null as any,
     neighborhoodRef: null as any,
     stateRef:        null as any,
     storeRef:        null as any,
     typeRef:         null as any,
-    cityRef:         null as any
+    cityRef:         null as any,
+    setFilters:      () => {},
+    filters:         InitialFilters
 })

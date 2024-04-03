@@ -1,13 +1,14 @@
 import { FilterDescriptor } from "devextreme/data/index"
 import { getCustomStore } from "../../../devextreme"
 import { Button, TileView } from "devextreme-react"
-import { SelectsRefs } from "../../../Context";
-import { useContext } from "react";
+import { ShowCaseContext } from "../../../Context"
+import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
 import './ShowCaseList.scss'
 
-export function ShowCaseList({ refresh }: { refresh: Function }){
-    const { neighborhoodRef, stateRef, storeRef, typeRef, cityRef } = useContext(SelectsRefs);
-
+export function ShowCaseList(){
+    const { neighborhoodRef, stateRef, storeRef, typeRef, cityRef, showCaseListRef } = useContext(ShowCaseContext);
+    
     function MountFilter(){
         const neighborhood =  neighborhoodRef.current ? neighborhoodRef.current.instance.option("value") : null
         const state =         stateRef.current ? stateRef.current.instance.option("value") : null
@@ -18,7 +19,7 @@ export function ShowCaseList({ refresh }: { refresh: Function }){
         let filter:FilterDescriptor = []
 
         if(type !== null) filter.push(["TIPO_COMPOSICAO_TRADE", "=", type])  
-        if(state !== null) filter.push("AND", ["ESTADO", "=", state])  
+        if(state !== null) { type !== null && filter.push("AND"); filter.push(["ESTADO", "=", state]) }
         if(city !== null) filter.push("AND", ["CIDADE", "=", city])  
         if(neighborhood !== null) filter.push("AND", ["BAIRRO", "=", neighborhood]) 
         if(store !== null) filter.push("AND", ["NOME_REDUZIDO", "=", store])  
@@ -39,6 +40,7 @@ export function ShowCaseList({ refresh }: { refresh: Function }){
 
     return <TileView height="calc(100% - var(--content-padding) - 32px)"
                      showScrollbar="always"
+                     ref={showCaseListRef}
                      itemComponent={Item} 
                      baseItemHeight={447}
                      direction="vertical"
@@ -49,6 +51,8 @@ export function ShowCaseList({ refresh }: { refresh: Function }){
 }
 
 function Item({ data }: any){
+    const navigate = useNavigate()
+
     return <section className="ShowCaseCard">
         <header>
             <div>
@@ -74,11 +78,16 @@ function Item({ data }: any){
         </main>
         <footer>
             <div>
-                <Button icon="like" type="danger" stylingMode="text" style={{fontSize: "1.5rem !important"}} width={35} height={35}></Button>
-                <Button icon="share" stylingMode="text" style={{fontSize: "1.5rem !important"}} width={35} height={35}></Button>
+                <Button icon="like" type="danger" stylingMode="text" width={35} height={35}/>
+                <Button icon="share" stylingMode="text" width={35} height={35}/>
             </div>
             
-            <Button icon="expandform" type="default" stylingMode="text" width={35} height={35}></Button>
+            <Button onClick={() => navigate(`/showcase-item/${data.InResultId}`, { state: data })}
+                    stylingMode="text"
+                    icon="expandform" 
+                    type="default" 
+                    height={35}
+                    width={35}/>
         </footer>
     </section>
 }
