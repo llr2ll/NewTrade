@@ -1,15 +1,21 @@
 
-import { List, ScrollView } from "devextreme-react";
 import { ContractListItem } from "../../components";
+import { getCustomStore } from "../../devextreme";
+import { List } from "devextreme-react";
 
 export function Contracts(){
-    return <ScrollView className='view-wrapper-scroll page-padding'>
-        <List itemRender={(item: any) => <ContractListItem item={item}/>}
-               //dataSource={WebQuoteMonitoringListDs} 
-               //ref={WebQuoteMonitoringListRef}
-               pageLoadMode="scrollBottom"
-               useNativeScrolling={true} 
-               className='WebQuoteList'
-               indicateLoading={false}/>
-    </ScrollView>
+    const contractList = getCustomStore({
+        get: {
+            customViewName:     "TPC_Contratados",
+            getErrorMessage:    "Falha ao trazer os contratos"
+        }
+    })
+
+    return <section className='page-padding'>
+        <List itemRender={ContractListItem}
+              pageLoadMode="scrollBottom"
+              useNativeScrolling={true} 
+              dataSource={contractList}
+              indicateLoading={false}/>
+    </section>
 }

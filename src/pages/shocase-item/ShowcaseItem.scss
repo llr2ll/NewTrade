@@ -1,4 +1,8 @@
-.show-case-item { display: flex; height: 100% }
+.show-case-item { 
+    min-height: 720px;
+    display: flex; 
+    height: 99%;
+}
 
 .show-case-item .dx-field-item-label-location-top { padding-inline-start: 0 !important }
 
@@ -11,15 +15,17 @@
 }
 
 .show-case-item > main {
-    height: calc(100% - 5px);
     margin: 5px 10px;
+    height: 100%;
     width: 50%
 }
 
-.show-case-item-img > img {
+.show-case-item > main > img {
     width: -webkit-fill-available;
     border-radius: 8px;
-    height: 40%;
+    height: calc(100% - 307px);
 }
 
 .show-case-item .dx-button .dx-icon { font-size: 1.5rem }
+
+.media-btns { display: flex; justify-content: flex-end }

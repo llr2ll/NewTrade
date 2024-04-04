@@ -96,6 +96,8 @@
     justify-content: space-between;
     align-items: center;
     display: flex;
-    padding: 8px; 
     height: 56px; 
+    padding: 8px; 
 }
+
+.product-price input { font-weight: bold; text-align: right }

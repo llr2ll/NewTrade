@@ -5,7 +5,7 @@ import { localToken } from './environment';
 import notify from "devextreme/ui/notify";
 import { GetCustomStore } from './types';
 
-export function modal(message: string, type: string){ 
+export function modal(message: string, type: 'error' | 'info' | 'success' | 'warning'){ 
   return notify({ 
     message: message, 
     height: 60, 

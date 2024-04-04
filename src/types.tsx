@@ -144,3 +144,36 @@ export interface IShowCaseContext {
   setFilters:      Function,
   filters:         typeof InitialFilters
 }
+
+export interface IContract {
+  InResultId:      number;
+  ExecutionGuid:   string;
+  ESTADO:          string;
+  CIDADE:          string;
+  BAIRRO:          string;
+  LOJA:            null;
+  QUANTIDADE:      string;
+  VALOR:           any;
+  TIPO_COMPOSICAO: string;
+  IMAGEM:          string;
+}
+
+export interface IShowCaseItem {
+  InResultId:            number;
+  ExecutionGuid:         string;
+  FICHA:                 string;
+  ACAO_TRADE_PROVISAO:   string;
+  datasheet_form_id:     string;
+  COMPLEMENTO:           string;
+  ESTADO:                string;
+  CIDADE:                string;
+  BAIRRO:                string;
+  LOJA:                  string;
+  QUANTIDADE:            string;
+  VALOR:                 any;
+  TIPO_COMPOSICAO:       string;
+  TIPO_COMPOSICAO_TRADE: string;
+  ORDEM:                 string;
+  IMAGEM:                string;
+  FAVORITADO:            string;
+}

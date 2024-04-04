@@ -1,8 +1,8 @@
 import { FilterDescriptor } from "devextreme/data/index"
+import { ShowCaseListItem } from "./ShowCaseListItem"
 import { getCustomStore } from "../../../devextreme"
-import { Button, TileView } from "devextreme-react"
 import { ShowCaseContext } from "../../../Context"
-import { useNavigate } from "react-router-dom"
+import { TileView } from "devextreme-react"
 import { useContext } from "react"
 import './ShowCaseList.scss'
 
@@ -24,70 +24,24 @@ export function ShowCaseList(){
         if(neighborhood !== null) filter.push("AND", ["BAIRRO", "=", neighborhood]) 
         if(store !== null) filter.push("AND", ["NOME_REDUZIDO", "=", store])  
 
-        console.log(filter)
-
         return filter.length === 0 ? undefined : filter 
     }
 
-    const cityDs = getCustomStore({
+    const ShowCaseDs = getCustomStore({
         get: {
-            getErrorMessage:  "Falha ao trazer as lojas",
-            keyExpr:          "CLIENTE_CNPJ",
-            customViewName:   "TPC_Trade", 
-            dataSourceOptions: { filter: MountFilter() }
+            getErrorMessage:  "Falha ao trazer os items",
+            dataSourceOptions: { filter: MountFilter() },
+            customViewName:   "TPC_Trade"
         }
     })
 
     return <TileView height="calc(100% - var(--content-padding) - 32px)"
+                     itemComponent={ShowCaseListItem} 
+                     style={{margin: "auto"}}
+                     dataSource={ShowCaseDs}
                      showScrollbar="always"
                      ref={showCaseListRef}
-                     itemComponent={Item} 
                      baseItemHeight={447}
                      direction="vertical"
-                     dataSource={cityDs}
-                     baseItemWidth={345}  
-                     itemMargin={30}
-                     width="100%"/>
-}
-
-function Item({ data }: any){
-    const navigate = useNavigate()
-
-    return <section className="ShowCaseCard">
-        <header>
-            <div>
-                <div>R</div>
-                <img />
-            </div>
-            
-            <p>{data.TIPO_COMPOSICAO}</p>
-        
-            <Button icon="overflow" width={35} height={35}></Button>
-        </header>
-        <main>
-            <img src={data.IMAGEM}/>
-            <div>
-                <ul>
-                    <li><strong>Quantidade:</strong>      {data.QUANTIDADE}</li>
-                    <li><strong>Estado:</strong>          {data.ESTADO}</li>
-                    <li><strong>Cidade:</strong>          {data.CIDADE}</li>
-                    <li><strong>Bairro:</strong>          {data.BAIRRO}</li> 
-                    <li><strong>Loja:</strong>            {data.LOJA}</li>
-                </ul>
-            </div>
-        </main>
-        <footer>
-            <div>
-                <Button icon="like" type="danger" stylingMode="text" width={35} height={35}/>
-                <Button icon="share" stylingMode="text" width={35} height={35}/>
-            </div>
-            
-            <Button onClick={() => navigate(`/showcase-item/${data.InResultId}`, { state: data })}
-                    stylingMode="text"
-                    icon="expandform" 
-                    type="default" 
-                    height={35}
-                    width={35}/>
-        </footer>
-    </section>
+                     baseItemWidth={345}/>
 }
