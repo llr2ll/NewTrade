@@ -1,4 +1,4 @@
-export { ContractItens } from "./contract-itens/ContractItens"
+export { ContractItens } from "./contract-itens/ContractListItens"
 export { Commorvations } from "./commorvations/Commorvations"
 export { ShowCaseItem } from "./shocase-item/ShowcaseItem"
 export { Contracts } from "./contracts/Contracts"

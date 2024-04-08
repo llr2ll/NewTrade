@@ -1,9 +1,9 @@
 import { FavoriteItem, ShareItem } from "../../../environment"
 import { Button, NumberBox } from "devextreme-react"
 import { ShowCaseContext } from "../../../Context"
+import { IShowCaseItem } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
-import { IShowCaseItem } from "../../../types"
 
 export function ShowCaseListItem({ data }){
     const { showCaseListRef } = useContext(ShowCaseContext);
@@ -47,14 +47,14 @@ export function ShowCaseListItem({ data }){
                 <Button icon="share" stylingMode="text" width={35} height={35} onClick={ShareItem}/>
 
                 <Button onClick={() => navigate(`/showcase-item/${Data.InResultId}`, { state: Data })}
-                    stylingMode="text"
-                    icon="expandform" 
-                    type="default" 
-                    height={35}
-                    width={35}/>
+                        stylingMode="text"
+                        icon="expandform" 
+                        type="default" 
+                        height={35}
+                        width={35}/>
             </div>
 
-            <NumberBox className="product-price" value={data.VALOR} width={172} format="R$ #,##0.00"  readOnly/>
+            <NumberBox className="product-price" value={data.VALOR} width={172} format="R$ #,##0.00" readOnly/>
         </footer>
     </section>
 }

@@ -146,6 +146,22 @@ export interface IShowCaseContext {
 }
 
 export interface IContract {
+  InResultId:                      number;
+  CONTRATO_TRADE:                  number;
+  DESCRICAO_ACAO:                  string;
+  DATA_INICIAL:                    string;
+  DATA_FINAL:                      string;
+  ENTIDADE:                        number;
+  NOME_ENTIDADE:                   string;
+  FORMA_PAGAMENTO:                 number;
+  DESCRICAO_FORMA_PAGAMENTO:       string;
+  STATUS_CONTRATO_TRADE:           number;
+  DESCRICAO_STATUS_CONTRATO_TRADE: string;
+  IMAGEM:                          string;
+  VALOR:                           null;
+}
+
+export interface IContractItem {
   InResultId:      number;
   ExecutionGuid:   string;
   ESTADO:          string;

@@ -6,7 +6,7 @@ import { List } from "devextreme-react";
 export function Contracts(){
     const contractList = getCustomStore({
         get: {
-            customViewName:     "TPC_Contratados",
+            customViewName:     "TPC_Trade_Contratos",
             getErrorMessage:    "Falha ao trazer os contratos"
         }
     })
