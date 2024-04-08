@@ -16,7 +16,7 @@ export function ContractItens(){
         }
     })
 
-    return <section>
+    return <section className="page-padding">
         <Button onClick={() => navigate(-1)} stylingMode="text" icon="arrowleft" height={35} width={35}/>
 
         <TileView height="calc(100% - var(--content-padding) - 32px)"
@@ -27,7 +27,7 @@ export function ContractItens(){
                 //ref={showCaseListRef}
                   baseItemHeight={447}
                   direction="vertical"
-                  baseItemWidth={345}/>
+                  />
     </section>
 }
 

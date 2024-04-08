@@ -8,7 +8,7 @@ export function ContractListItem(data: IContract){
     const navigate = useNavigate()
 
     return <section className="contract-item" onClick={() => navigate(`/contract-itens/${data.InResultId}`, { state: data })}>
-        <img src={data.IMAGEM} width={220} height="auto"/>
+        <div><i className="dx-icon-textdocument"></i></div>
 
         <Form formData={data} className="contract-item-form">
             <GroupItem colCount={3}>
@@ -28,7 +28,6 @@ export function ContractListItem(data: IContract){
                       label={{text: "Status"}}
                       editorType="dxTextBox" 
                       colSpan={1}/>
-
             </GroupItem>
         </Form>
     </section>

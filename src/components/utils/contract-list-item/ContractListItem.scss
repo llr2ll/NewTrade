@@ -6,7 +6,18 @@
     display: flex;
 }
 
-.contract-item img { border-radius: 8px 0 0 8px }
+.contract-item > div:nth-child(1) {
+    border: 1px solid var(--border-color);
+    border-left: 10px var(--accent-color) solid;
+    border-radius: 8px 0 0 8px;
+    justify-content: center;
+    align-items: center; 
+    display: flex; 
+    height: auto; 
+    width: 220px;
+}
+
+.contract-item > div:nth-child(1) > i { font-size: 3rem }
 
 .contract-item-form {
     border: 1px solid var(--border-color);
