@@ -36,8 +36,7 @@ export function ShowCaseList(){
     })
 
     return <TileView height="calc(100% - var(--content-padding) - 32px)"
-                     itemComponent={ShowCaseListItem} 
-                     style={{margin: "auto"}}
+                     itemComponent={ShowCaseListItem}
                      dataSource={ShowCaseDs}
                      showScrollbar="always"
                      ref={showCaseListRef}

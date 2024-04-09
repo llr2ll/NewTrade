@@ -2,7 +2,7 @@ import { GroupItem, Item } from "devextreme-react/cjs/form"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Button, Form, TileView } from "devextreme-react"
 import { getCustomStore } from "../../devextreme"
-import { IContract, IContractItem } from "../../types"
+import { IContractItem } from "../../types"
 import "./ContractListItens.scss"
 import { useRef } from "react"
 
@@ -29,7 +29,6 @@ export function ContractItens(){
         <TileView height="calc(100% - var(--content-padding) - 32px)"
                   itemComponent={ContractItem}
                   dataSource={contractItensDs}
-                  style={{boderRadius: 5}}
                   showScrollbar="always"
                   baseItemHeight={242}
                   direction="vertical"

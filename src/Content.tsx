@@ -17,8 +17,8 @@ export const Content = () => {
           reports.items.push({
             text: res[i].text,
             icon: "datatrending",
-            path: `/relatorio${i}`,
-            link: res[i].lik
+            path: "",
+            link: res[i].link
           });
         }
         

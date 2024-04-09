@@ -166,6 +166,7 @@ export interface IContractItem {
   TIPO_COMPOSICAO:      string,
   CONTRATO_TRADE:       number,
   ExecutionGuid:        string,
+  COMPLEMENTO:          string,
   InResultId:           number,
   QUANTIDADE:           string,
   ESTADO:               string,
@@ -173,7 +174,7 @@ export interface IContractItem {
   BAIRRO:               string,
   IMAGEM:               string,
   VALOR:                any,
-  LOJA:                 string;
+  LOJA:                 string,
 }
 
 export interface IShowCaseItem {

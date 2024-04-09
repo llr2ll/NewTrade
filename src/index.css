@@ -105,3 +105,11 @@ html { scroll-behavior: smooth }
 .page-padding { height: 100%; padding: var(--content-padding) }
 
 .dx-list-item { cursor: initial }
+
+.dx-field-item-label-location-top { padding-inline-start: 0 !important }
+
+.dx-tileview-wrapper { 
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

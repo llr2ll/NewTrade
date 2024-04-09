@@ -29,7 +29,9 @@ export const SideNavOuterToolbar = ({ children, navigationLayout }: React.PropsW
   }, [isLarge]);
 
   const onNavigationChanged:any = useCallback(
-    ({ itemData: { path }, event, node }) => {
+    ({ itemData: { path, link }, event, node }) => {
+      if(link) window.open(link, '_blank')
+
       if (menuStatus === MenuStatus.Closed || !path || node.selected) {
         event.preventDefault();
         return;
