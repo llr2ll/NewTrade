@@ -158,20 +158,22 @@ export interface IContract {
   STATUS_CONTRATO_TRADE:           number;
   DESCRICAO_STATUS_CONTRATO_TRADE: string;
   IMAGEM:                          string;
-  VALOR:                           null;
+  VALOR:                           any;
 }
 
 export interface IContractItem {
-  InResultId:      number;
-  ExecutionGuid:   string;
-  ESTADO:          string;
-  CIDADE:          string;
-  BAIRRO:          string;
-  LOJA:            null;
-  QUANTIDADE:      string;
-  VALOR:           any;
-  TIPO_COMPOSICAO: string;
-  IMAGEM:          string;
+  ACAO_TRADE_PROVISAO:  number,
+  TIPO_COMPOSICAO:      string,
+  CONTRATO_TRADE:       number,
+  ExecutionGuid:        string,
+  InResultId:           number,
+  QUANTIDADE:           string,
+  ESTADO:               string,
+  CIDADE:               string,
+  BAIRRO:               string,
+  IMAGEM:               string,
+  VALOR:                any,
+  LOJA:                 string;
 }
 
 export interface IShowCaseItem {

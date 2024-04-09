@@ -1,3 +1,4 @@
+import { developmentMode } from './environment';
 import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/stable';
 import { Loader } from "./loader";
@@ -13,7 +14,7 @@ const root = ReactDOM.createRoot(divRoot as HTMLElement)
 
 let firstRender = 0
 
-if(window.location.href.match(/^http:\/\/localhost/) !== null) {
+if(developmentMode()) {
    divRoot.style.display = "block"
    root.render(<App />)
    loader.render(<Loader />)
@@ -25,7 +26,7 @@ else {
 
 function handleToken(event: MessageEvent){
     if(event.data.token){
-        window.localStorage.setItem("Token", event.data.token) 
+        window.localStorage.setItem("Token", event.  data.token) 
 
         if(firstRender === 0) {
             divRoot.style.display = "block"

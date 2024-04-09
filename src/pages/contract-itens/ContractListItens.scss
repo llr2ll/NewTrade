@@ -1,0 +1,15 @@
+.contract-item-card{
+    border-bottom: 10px solid var(--accent-color);
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+    display: flex;
+    height: 100%; 
+    width: 100%;
+}
+
+.contract-item-card .dx-tile{ 
+    border: 1px solid var(--border-color) !important;
+    border-radius: 5px !important;
+}
+
+.contract-item-card .dx-field-item-label-location-top { padding-inline-start: 0 !important }

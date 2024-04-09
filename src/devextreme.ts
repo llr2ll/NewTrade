@@ -1,7 +1,7 @@
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import ODataStore from 'devextreme/data/odata/store';
-import { localToken } from './environment';
+import { developmentMode, localToken } from './environment';
 import notify from "devextreme/ui/notify";
 import { GetCustomStore } from './types';
 
@@ -26,8 +26,8 @@ export function getCustomStore({ get, post, remove }: GetCustomStore): CustomSto
   const dataSource = (url: string, errorMessage, payload?: any, successMessage?: string): DataSource => new DataSource({
     store: new ODataStore({
       beforeSend: event => {
-        event.headers = { 
-          "Authorization": `Bearer ${window.location.href.match(/^http:\/\/localhost/) !== null ? localToken : window.localStorage.getItem("Token")}`, 
+        event.headers = {
+          "Authorization": `Bearer ${developmentMode() ? localToken : window.localStorage.getItem("Token")}`, 
           "api-version": 1 
         }
         payload && ( 
