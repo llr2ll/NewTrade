@@ -1,98 +1,149 @@
-import Form, { ButtonItem, GroupItem, Item, RequiredRule } from "devextreme-react/cjs/form"
-import { useLocation, useNavigate } from "react-router-dom"
+import Form, { ButtonItem, GroupItem, Item, RequiredRule, SimpleItem } from "devextreme-react/cjs/form"
+import { Button, DropDownButton, ScrollView } from "devextreme-react"
 import { FavoriteItem, ShareItem } from "../../environment"
+import { useLocation, useNavigate } from "react-router-dom"
 import { getCustomStore, modal } from "../../devextreme"
-import { Button, ScrollView } from "devextreme-react"
-import { ShowCaseContext } from "../../Context"
 import { IShowCaseItem } from "../../types"
-import { useContext } from "react"
+import { useRef, useState } from "react"
 import "./ShowcaseItem.scss"
 
 export function ShowCaseItem(){
-    const { showCaseListRef } = useContext(ShowCaseContext);
+    const [ contract, setContract ] = useState<number | null>(null)
+    const [ PIN, setPIN ] = useState<number | null>(null)
     let data:IShowCaseItem = useLocation().state
+    const [ like, setLike ] = useState<string>(data.FAVORITO)
     const navigate = useNavigate()
+    const formRef:any = useRef()
     
     function openDetails(){ window.open(`https://portal.cosmospro.com.br/private/forms/user/record-editor/${data.datasheet_form_id}/${data.FICHA}`, '_blank') }
 
-    function sendData(e: any) {
-        const body      = { 
-            //'CONTRATO': contract?.current?.instance?.option('value') ?? 7777777, 
-            //'PIN': pin?.current?.instance?.option('value') ?? 7777, 
-            'ACAO_TRADE_PROVISAO': data.ACAO_TRADE_PROVISAO, 
-            'TIPO_COMPOSICAO_TRADE': data.TIPO_COMPOSICAO_TRADE, 
-            'COMPLEMENTO': data.COMPLEMENTO, 
-            'QUANTIDADE': data.QUANTIDADE, 
-            'VALOR_VENDA': data.VALOR, 
-            'ORDEM': data.ORDEM 
-        }
+    function sendData(e){
+        e.preventDefault();
 
-        // getCustomStore({
-        //     post: {
-        //         postCustomActionName:   "TPC_GerarComposicaoContrato",
-        //         postErrorMessage:       "Ocorreu um erro desconhecido durante a contratação."
-        //     }
-        // })
-        //     .update(undefined, data)
-        //     .then(res => {
-        //         modal(res[0].message, res[0].status === 'contract-success' ? 'success' : 'error')
-        //         res[0].status && navigate(-1)
-        //     })
+        if(formRef.current.instance.validate().isValid) {
+            getCustomStore({
+                post: {
+                    postCustomActionName:   "TPC_GerarComposicaoContrato",
+                    postErrorMessage:       "Ocorreu um erro desconhecido durante a contratação."
+                }
+            })
+                .update(undefined, { ...data, 'CONTRATO': contract, 'PIN': PIN })
+                .then(res => {
+                    if(res[0].status === 'contract-success'){
+                        modal(res[0].message, 'success')
+                        res[0].status && navigate(-1)
+                    }  
+                    else modal(res[0].message, 'error')
+                })
+        }
+        else { modal('Preencha os campos obrigatórios', 'warning') } 
     }
 
+    function refresh(value: string) { setLike(value) }
 
     return <ScrollView className='view-wrapper-scroll page-padding'>
         <section className="show-case-item">
-            <Form formData={data} colCount={2} width="50%" className="show-case-item-form" style={{ margin: 5 }}>
-                <GroupItem colSpan={2} colCount={2}>
-                    <ButtonItem horizontalAlignment="left" 
-                                buttonOptions={{ 
-                                    onClick: () => navigate(-1),
-                                    stylingMode: "text",
-                                    icon: "arrowleft", 
-                                    height: 35, 
-                                    width: 35
-                                }}
-                                colSpan={1}/>
-
-                    <Item colSpan={1} cssClass="media-btns">
-                        <Button onClick={() => FavoriteItem(showCaseListRef, data)}
-                                type={data.FAVORITADO ? "danger" : "normal"} 
-                                stylingMode="text" 
-                                height={35} 
-                                icon="like"
-                                width={35}/>
-
-                        <Button icon="share" stylingMode="text" width={35} height={35} onClick={ShareItem}/>
-                        <Button icon="overflow" width={35} height={35}/>
-                    </Item>
-                </GroupItem>
-     
-                <GroupItem colCount={2} caption={data.LOJA} colSpan={2}>
-                    <Item dataField="ESTADO" colSpan={1} label={{text: "Estado"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="CIDADE" colSpan={1} label={{text: "Cidade"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="BAIRRO" colSpan={1} label={{text: "Bairro"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="COMPLEMENTO" colSpan={1} label={{text: "Complemento"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="" colSpan={1} label={{text: "Tamanho da Loja m2"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="" colSpan={1} label={{text: "Faixa de Faturamento"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    <Item dataField="" colSpan={2} label={{text: "Fluxo de Pessoa(s)"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                    
-                    <Item dataField="DESCRICAO" colSpan={2} label={{text: "Descricao"}} editorType="dxTextArea" editorOptions={{ readOnly: true }}/>
-
-                    <Item colSpan={2} label={{text: "Nº Do Contrato"}} editorType="dxNumberBox">
-                        <RequiredRule message="Preencha o número do contrato" />
-                    </Item>
-
-                    <Item colSpan={2} label={{text: "PIN"}} editorType="dxNumberBox">
-                        <RequiredRule message="Insira o código PIN" />
-                    </Item>
-
+            <form onSubmit={sendData} className="show-case-item-form" style={{ margin: 5, width: "50%" }}>
+                <Form ref={formRef} formData={data} colCount={2}>
                     <GroupItem colSpan={2} colCount={2}>
-                        <ButtonItem colSpan={1} buttonOptions={{ text: "Detalhes", type: "default", width: "100%", onClick: openDetails }}/>
-                        <ButtonItem colSpan={1} buttonOptions={{ text: "Contratar", type: "success", width: "100%", onClick: sendData, useSubmitBehavior: true }}/>
+                        <ButtonItem horizontalAlignment="left" 
+                                    buttonOptions={{ 
+                                        onClick: () => navigate(-1),
+                                        stylingMode: "text",
+                                        icon: "arrowleft", 
+                                        height: 35, 
+                                        width: 35
+                                    }}
+                                    colSpan={1}/>
+
+                        <Item colSpan={1} cssClass="media-btns">
+                            <Button onClick={() => FavoriteItem(data, refresh, true)}
+                                    type={like === "S" ? "danger" : "normal"} 
+                                    stylingMode="text" 
+                                    height={35} 
+                                    icon="like"
+                                    width={35}/>
+
+                            <Button icon="share" stylingMode="text" width={35} height={35} onClick={ShareItem}/>
+
+                            <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
+                                    { text: 'Profile', icon: 'user' },
+                                    { text: 'Messages', icon: 'email', badge: '5' },
+                                    { text: 'Friends', icon: 'group' },
+                                    { text: 'Exit', icon: 'runner' },
+                                ]}/>
+                        </Item>
                     </GroupItem>
-                </GroupItem>
-            </Form>
+        
+                    <GroupItem colCount={2} caption={data.LOJA} colSpan={2}>
+                        <SimpleItem dataField="ESTADO" colSpan={1} label={{text: "Estado"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+                        <SimpleItem dataField="CIDADE" colSpan={1} label={{text: "Cidade"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+                        <SimpleItem dataField="BAIRRO" colSpan={1} label={{text: "Bairro"}} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+                        
+                        <SimpleItem editorOptions={{ readOnly: true }}
+                                    label={{text: "Complemento"}} 
+                                    dataField="COMPLEMENTO" 
+                                    editorType="dxTextBox" 
+                                    colSpan={1}/>
+                        
+                        <SimpleItem label={{text: "Tamanho da Loja m2"}} 
+                                    editorOptions={{ readOnly: true }}
+                                    dataField="TAMANHO_M2" 
+                                    editorType="dxTextBox" 
+                                    colSpan={1}/>
+
+                        <SimpleItem label={{text: "Faixa de Faturamento"}} 
+                                    editorOptions={{ readOnly: true }}
+                                    dataField="FAIXA_FATURAMENTO" 
+                                    editorType="dxTextBox" 
+                                    colSpan={1}/>
+
+                        <SimpleItem label={{text: "Fluxo de Pessoa(s)"}} 
+                                    editorOptions={{ readOnly: true }}
+                                    dataField="FLUXO_PESSOA" 
+                                    editorType="dxTextBox" 
+                                    colSpan={2}/>
+                        
+                        <SimpleItem editorOptions={{ readOnly: true }}
+                                    label={{text: "Descricao"}} 
+                                    editorType="dxTextArea" 
+                                    dataField="DESCRICAO" 
+                                    colSpan={2}/>
+
+                        <SimpleItem editorOptions={{ min: 0, step: 0, onValueChanged: e => setContract(e.value), value: contract }}
+                                    label={{text: "Nº Do Contrato"}} 
+                                    dataField="NUMERO_CONTRATO" 
+                                    editorType="dxNumberBox" 
+                                    name="NUMERO_CONTRATO" 
+                                    colSpan={2}>
+
+                            <RequiredRule message="Preencha o número do contrato" />
+                        </SimpleItem>
+
+                        <SimpleItem editorOptions={{ min: 0, step: 0, onValueChanged: e => setPIN(e.value), value: PIN }}
+                                    editorType="dxNumberBox"
+                                    label={{text: "PIN"}} 
+                                    dataField="PIN" 
+                                    colSpan={2} 
+                                    name="PIN">
+
+                            <RequiredRule message="Insira o código PIN" />
+                        </SimpleItem>
+
+                        <GroupItem colSpan={2} colCount={2}>
+                            <ButtonItem colSpan={1} buttonOptions={{ text: "Detalhes", type: "default", width: "100%", onClick: openDetails }}/>
+                            <ButtonItem buttonOptions={{ 
+                                            visible: data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S",
+                                            text: data.CONTRATO === "S" ? "Contratar" : "Pré-contratar", 
+                                            useSubmitBehavior: true, 
+                                            type: "success", 
+                                            width: "100%",
+                                        }}
+                                        colSpan={1}/>
+                        </GroupItem>
+                    </GroupItem>
+                </Form>
+            </form>
             
             <main>
                 <img src={data.IMAGEM}/>

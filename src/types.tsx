@@ -1,4 +1,4 @@
-import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, Popup, SelectBox, TileView } from 'devextreme-react';
+import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, SelectBox, TileView } from 'devextreme-react';
 import { DataSourceOptions } from 'devextreme/data/data_source';
 import { TreeViewTypes } from 'devextreme-react/tree-view';
 import { ButtonTypes } from 'devextreme-react/button';
@@ -140,7 +140,7 @@ export interface IShowCaseContext {
   storeRef:        ISelectBox, 
   typeRef:         ISelectBox, 
   cityRef:         ISelectBox, 
-  showCaseListRef: ITileView,
+  showCaseListRef: IList,
   setFilters:      Function,
   filters:         typeof InitialFilters
 }
@@ -178,21 +178,23 @@ export interface IContractItem {
 }
 
 export interface IShowCaseItem {
-  InResultId:            number;
-  ExecutionGuid:         string;
-  FICHA:                 string;
-  ACAO_TRADE_PROVISAO:   string;
-  datasheet_form_id:     string;
-  COMPLEMENTO:           string;
-  ESTADO:                string;
-  CIDADE:                string;
-  BAIRRO:                string;
-  LOJA:                  string;
-  QUANTIDADE:            string;
-  VALOR:                 any;
-  TIPO_COMPOSICAO:       string;
-  TIPO_COMPOSICAO_TRADE: string;
-  ORDEM:                 string;
-  IMAGEM:                string;
-  FAVORITADO:            string;
+  InResultId:                   number;
+  ExecutionGuid:                string;
+  FICHA:                        string;
+  ACAO_TRADE_PROVISAO:          string;
+  datasheet_form_id:            string;
+  COMPLEMENTO:                  string;
+  ESTADO:                       string;
+  CIDADE:                       string;
+  BAIRRO:                       string;
+  LOJA:                         string;
+  QUANTIDADE:                   string;
+  VALOR:                        any;
+  TIPO_COMPOSICAO:              string;
+  TIPO_COMPOSICAO_TRADE:        string;
+  ORDEM:                        string;
+  IMAGEM:                       string;
+  FAVORITO:                     string;
+  CONTRATO:                     string;
+  PERMITIR_CRIAR_PRE_CONTRATO:  string;
 }

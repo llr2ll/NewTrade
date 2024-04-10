@@ -2,7 +2,7 @@ import { FilterDescriptor } from "devextreme/data/index"
 import { ShowCaseListItem } from "./ShowCaseListItem"
 import { getCustomStore } from "../../../devextreme"
 import { ShowCaseContext } from "../../../Context"
-import { TileView } from "devextreme-react"
+import { List, TileView } from "devextreme-react"
 import { useContext } from "react"
 import './ShowCaseList.scss'
 
@@ -35,12 +35,12 @@ export function ShowCaseList(){
         }
     })
 
-    return <TileView height="calc(100% - var(--content-padding) - 32px)"
-                     itemComponent={ShowCaseListItem}
-                     dataSource={ShowCaseDs}
-                     showScrollbar="always"
-                     ref={showCaseListRef}
-                     baseItemHeight={447}
-                     direction="vertical"
-                     baseItemWidth={345}/>
+    return <List height="calc(100% - var(--content-padding) - 32px)"
+                 style={{margin: "15px 0"}}
+                 itemRender={ShowCaseListItem}
+                 pageLoadMode="scrollBottom"
+                 className="showcase-list"
+                 useNativeScrolling={true}
+                 dataSource={ShowCaseDs} 
+                 ref={showCaseListRef}/>  
 }

@@ -101,3 +101,10 @@
 }
 
 .product-price input { font-weight: bold; text-align: right }
+
+.showcase-list .dx-list-items{
+    grid-template-columns: repeat(auto-fit, 365px);
+    justify-content: space-evenly;
+    grid-template-rows: 475px;
+    display: grid;
+}

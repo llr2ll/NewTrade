@@ -1,16 +1,18 @@
 import { FavoriteItem, ShareItem } from "../../../environment"
-import { Button, NumberBox } from "devextreme-react"
+import { Button, DropDownButton, NumberBox } from "devextreme-react"
 import { ShowCaseContext } from "../../../Context"
 import { IShowCaseItem } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 
-export function ShowCaseListItem({ data }){
+export function ShowCaseListItem(data){
     const { showCaseListRef } = useContext(ShowCaseContext);
     const Data:IShowCaseItem = data
     const navigate = useNavigate()
 
     Data.VALOR = parseFloat(Data.VALOR)
+
+    function refresh() { showCaseListRef.current?.instance.repaint() }
 
     return <section className="ShowCaseCard">
         <header>
@@ -21,7 +23,12 @@ export function ShowCaseListItem({ data }){
             
             <p>{Data.TIPO_COMPOSICAO}</p>
         
-            <Button icon="overflow" width={35} height={35}></Button>
+            <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
+                    { text: 'Profile', icon: 'user' },
+                    { text: 'Messages', icon: 'email', badge: '5' },
+                    { text: 'Friends', icon: 'group' },
+                    { text: 'Exit', icon: 'runner' },
+                ]}/>
         </header>
         <main>
             <img src={Data.IMAGEM}/>
@@ -37,8 +44,8 @@ export function ShowCaseListItem({ data }){
         </main>
         <footer>
             <div>
-                <Button onClick={() => FavoriteItem(showCaseListRef, Data)}
-                        type={Data.FAVORITADO ? "danger" : "normal"} 
+                <Button onClick={() => FavoriteItem(Data, refresh)}
+                        type={Data.FAVORITO === "S" ? "danger" : "normal"} 
                         stylingMode="text" 
                         height={35} 
                         icon="like"

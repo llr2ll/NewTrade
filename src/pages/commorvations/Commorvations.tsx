@@ -1,7 +1,7 @@
 import Form, { ButtonItem, GroupItem, Item } from "devextreme-react/cjs/form";
-import { ScrollView, TextBox, TileView } from "devextreme-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IContractItem, ITileView } from "../../types";
+import { TextBox, TileView } from "devextreme-react";
 import { getCustomStore } from "../../devextreme";
 import { useRef } from "react";
 import jsPDF from 'jspdf';
@@ -19,7 +19,7 @@ export function Commorvations(){
         }
     })
 
-    async function print(){
+    function print(){
         const doc = new jsPDF();
 
         function addImageFromURL(url, x, y, width, height) {
@@ -32,60 +32,60 @@ export function Commorvations(){
         }
 
         try {
-            await addImageFromURL('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg', 10, 10, 350, 350);
-            await addImageFromURL('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg', 10, 370, 350, 350);
-            await addImageFromURL('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg', 10, 730, 350, 350);
+            commorvationsDs
+                .load()
+                .then(async (res: any) => {
+                    for(let i = 0; i < res.length; i++) { addImageFromURL(await res[i].IMAGEM.match(/src="([^"]*)"/)[1], 10, 10, 350, 350) }
 
-            doc.save('output.pdf');
+                    await doc.save('output.pdf')
+                })
         } catch (error) { console.error('Erro ao criar o PDF:', error) }
     }   
 
-    return <ScrollView className='view-wrapper-scroll page-padding'>
-        <Form formData={data} colCount={2} className="show-case-item-form" style={{ margin: 5 }}>
-            <GroupItem colSpan={2} colCount={2}>
-                <ButtonItem horizontalAlignment="left" 
-                            buttonOptions={{ 
-                                onClick: () => navigate(-1),
-                                stylingMode: "text",
-                                icon: "arrowleft", 
-                                height: 35, 
-                                width: 35
-                            }}
-                            colSpan={1}/>
+    return <Form formData={data} colCount={2} style={{ margin: "var(--content-padding)" }} className="show-case-item-form">
+        <GroupItem colSpan={2} colCount={2}>
+            <ButtonItem horizontalAlignment="left" 
+                        buttonOptions={{ 
+                            onClick: () => navigate(-1),
+                            stylingMode: "text",
+                            icon: "arrowleft", 
+                            height: 35, 
+                            width: 35
+                        }}
+                        colSpan={1}/>
 
-                <ButtonItem horizontalAlignment="right" 
-                            buttonOptions={{ 
-                                onClick: () => CommorvationsRef.current?.instance.getDataSource().reload(),
-                                stylingMode: "text",
-                                type: "default",
-                                icon: "refresh",
-                                height: 35, 
-                                width: 35
-                            }}
-                            colSpan={1}/>
-            </GroupItem>
-    
-            <GroupItem colCount={2} caption={data.LOJA} colSpan={2}>
-                <Item dataField="TIPO_COMPOSICAO" colSpan={1} label={{ text: "Tipo da Composição:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="ESTADO" colSpan={1} label={{ text: "Estado:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="CIDADE" colSpan={1} label={{ text: "Cidade:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="BAIRRO" colSpan={1} label={{ text: "Bairro:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="COMPLEMENTO" colSpan={1} label={{ text: "Complemento:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="QUANTIDADE" colSpan={1} label={{ text: "Quantidade:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="VALOR" colSpan={2} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
-                <ButtonItem colSpan={2} horizontalAlignment="center" buttonOptions={{ text: "Imprimir Comprovações", type: "default", icon: "print", onClick: print }}/>
-            </GroupItem>
-        </Form>
+            <ButtonItem horizontalAlignment="right" 
+                        buttonOptions={{ 
+                            onClick: () => CommorvationsRef.current?.instance.getDataSource().reload(),
+                            stylingMode: "text",
+                            type: "default",
+                            icon: "refresh",
+                            height: 35, 
+                            width: 35
+                        }}
+                        colSpan={1}/>
+        </GroupItem>
 
-        <TileView style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-                  dataSource={commorvationsDs}
-                  itemRender={Commorvation}
-                  ref={CommorvationsRef}
-                  showScrollbar="always"
-                  direction="vertical"
-                  baseItemHeight={395}
-                  baseItemWidth={350}/>
-    </ScrollView>
+        <GroupItem colCount={2} caption={data.LOJA} colSpan={2}>
+            <Item dataField="TIPO_COMPOSICAO" colSpan={1} label={{ text: "Tipo da Composição:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="ESTADO" colSpan={1} label={{ text: "Estado:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="CIDADE" colSpan={1} label={{ text: "Cidade:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="BAIRRO" colSpan={1} label={{ text: "Bairro:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="COMPLEMENTO" colSpan={1} label={{ text: "Complemento:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="QUANTIDADE" colSpan={1} label={{ text: "Quantidade:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+            <Item dataField="VALOR" colSpan={2} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
+            <ButtonItem colSpan={2} horizontalAlignment="center" buttonOptions={{ text: "Imprimir Comprovações", type: "default", icon: "print", onClick: print }}/>
+            <Item colSpan={2}>
+                <TileView dataSource={commorvationsDs}
+                    itemRender={Commorvation}
+                    ref={CommorvationsRef}
+                    showScrollbar="always"
+                    direction="vertical"
+                    baseItemHeight={395}
+                    baseItemWidth={350}/>
+            </Item>
+        </GroupItem>
+    </Form>
 }
 
 const Commorvation = item => <div>

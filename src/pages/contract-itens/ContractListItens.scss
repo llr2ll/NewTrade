@@ -1,13 +1,17 @@
-.page-padding .dx-tile{ 
+.contract-item-card{
     border: 1px solid var(--border-color) !important;
     border-radius: 5px !important;
-}
-
-.contract-item-card{
     border-bottom: 10px solid var(--accent-color);
     border-radius: 0 0 5px 5px;
     padding: 10px;
     display: flex;
     height: 100%; 
     width: 100%;
+}
+
+.contract-itens-list .dx-list-items{
+    grid-template-columns: repeat(auto-fit, 700px);
+    justify-content: space-evenly;
+    grid-template-rows: 270px;
+    display: grid;
 }

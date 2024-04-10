@@ -1,4 +1,4 @@
-import { ISelectBox, ITileView, InitialFilters } from "../../types";
+import { IList, ISelectBox, ITileView, InitialFilters } from "../../types";
 import { ShowCaseList, ShowCaseSelects } from "../../components";
 import { Button, ScrollView } from "devextreme-react";
 import { ShowCaseContext } from "../../Context";
@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 export function Showcase() {
   const [filters, setFilters] = useState(InitialFilters)
   const neighborhoodRef:ISelectBox = useRef(null as any);
-  const showCaseListRef:ITileView = useRef(null as any);
+  const showCaseListRef:IList = useRef(null as any);
   const stateRef:ISelectBox = useRef(null as any);
   const storeRef:ISelectBox = useRef(null as any);
   const typeRef:ISelectBox = useRef(null as any); 

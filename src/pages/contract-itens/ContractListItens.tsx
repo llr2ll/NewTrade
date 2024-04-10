@@ -1,6 +1,6 @@
 import { GroupItem, Item } from "devextreme-react/cjs/form"
 import { useLocation, useNavigate } from "react-router-dom"
-import { Button, Form, TileView } from "devextreme-react"
+import { Button, Form, List, TileView } from "devextreme-react"
 import { getCustomStore } from "../../devextreme"
 import { IContractItem } from "../../types"
 import "./ContractListItens.scss"
@@ -26,26 +26,24 @@ export function ContractItens(){
             <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={() => contractItens.current?.instance.repaint()} stylingMode='text'/>
         </div>
 
-        <TileView height="calc(100% - var(--content-padding) - 32px)"
-                  itemComponent={ContractItem}
-                  dataSource={contractItensDs}
-                  showScrollbar="always"
-                  baseItemHeight={242}
-                  direction="vertical"
-                  baseItemWidth={700}
-                  ref={contractItens}/>
+        <List height="calc(100% - var(--content-padding) - 32px)"
+              className="contract-itens-list"
+              dataSource={contractItensDs} 
+              pageLoadMode="scrollBottom"
+              itemRender={ContractItem}
+              useNativeScrolling={true}
+              ref={contractItens}/>
     </section>
 }
 
-export function ContractItem(data){
+export function ContractItem(data: IContractItem){
     const navigate = useNavigate()
-    const Data: IContractItem = data.data
     
-    Data.VALOR = parseFloat(Data.VALOR)
+    data.VALOR = parseFloat(data.VALOR)
 
-    return <section className="contract-item-card" onClick={() => navigate(`/commorvations/${Data.ACAO_TRADE_PROVISAO}`, { state: Data })}>
-        <img src={Data.IMAGEM} height="100%" width={345}/>
-        <Form formData={Data} style={{ margin: 10 }}>
+    return <section className="contract-item-card" onClick={() => navigate(`/commorvations/${data.ACAO_TRADE_PROVISAO}`, { state: data })}>
+        <img src={data.IMAGEM} height="100%" width={345}/>
+        <Form formData={data} style={{ margin: 10 }}>
             <GroupItem colCount={2}>
                 <Item dataField="ESTADO" editorType="dxTextBox"/>
                 <Item dataField="CIDADE" editorType="dxTextBox"/>
