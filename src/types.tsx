@@ -136,14 +136,16 @@ export const InitialFilters = {
 }
 
 export interface IShowCaseContext {
+  filters:         typeof InitialFilters
   neighborhoodRef: ISelectBox, 
   stateRef:        ISelectBox, 
   storeRef:        ISelectBox, 
   typeRef:         ISelectBox, 
   cityRef:         ISelectBox, 
-  showCaseListRef: IList,
   setFilters:      Function,
-  filters:         typeof InitialFilters
+  setLike:         Function,
+  like:            string, 
+  showCaseListRef: IList,
 }
 
 export interface IContract {

@@ -1,10 +1,10 @@
 import { cityDs, neighborhoodDs, stateDs, storeDs, typeDs } from "./ShowCaseSelectsDs";
 import { ShowCaseContext } from "../../../Context";
-import { SelectBox } from "devextreme-react";
+import { SelectBox, Button } from "devextreme-react";
 import { useContext } from "react";
 
 export function ShowCaseSelects(){
-    const { neighborhoodRef, stateRef, storeRef, typeRef, cityRef, filters, setFilters } = useContext(ShowCaseContext);
+    const { neighborhoodRef, setFilters, stateRef, storeRef, typeRef, cityRef, filters } = useContext(ShowCaseContext);
 
     function handleValue(value: any, key: any) {
         setFilters((prev: any) => {

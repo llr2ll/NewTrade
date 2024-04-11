@@ -2,6 +2,7 @@ import { IShowCaseContext, InitialFilters } from "./types";
 import { createContext } from "react";
 
 export const ShowCaseContext = createContext<IShowCaseContext>({
+    filters:         InitialFilters,
     showCaseListRef: null as any,
     neighborhoodRef: null as any,
     stateRef:        null as any,
@@ -9,5 +10,6 @@ export const ShowCaseContext = createContext<IShowCaseContext>({
     typeRef:         null as any,
     cityRef:         null as any,
     setFilters:      () => {},
-    filters:         InitialFilters
+    setLike:         () => {},
+    like:            "N" 
 })

@@ -26,6 +26,8 @@ function renderApp(){
 function handleToken(event: MessageEvent){
     if(event.data.token){ window.localStorage.setItem("Token", event.data.token); renderApp() }
 
+    console.log(event)
+
     if(event.data.fragment) {
         console.log("Fragmento", event.data.fragment, event)
 

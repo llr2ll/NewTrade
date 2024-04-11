@@ -12,6 +12,7 @@ export function Showcase() {
   const showCaseListRef:IList = useRef(null as any);
   const stateRef:ISelectBox = useRef(null as any);
   const storeRef:ISelectBox = useRef(null as any);
+  const [ like, setLike ] = useState<string>("N");
   const typeRef:ISelectBox = useRef(null as any); 
   const cityRef:ISelectBox = useRef(null as any);
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ export function Showcase() {
     } 
   }, [])
 
+  console.log(filters)
+
   return <ScrollView className='view-wrapper-scroll page-padding'>
     <section style={{ width: "100%", height: "100%" }}>
       <ShowCaseContext.Provider value={{
@@ -36,13 +39,22 @@ export function Showcase() {
         storeRef:        storeRef,
         filters:         filters, 
         typeRef:         typeRef,
-        cityRef:         cityRef
+        cityRef:         cityRef,
+        setLike:         setLike,
+        like:            like, 
       }}>
 
-        <div style={{ display: "flex", alignItems: "flex-end" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <ShowCaseSelects/>
 
           <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={() => showCaseListRef.current?.instance.repaint()} stylingMode='text'/>
+          
+          <Button onClick={() => setLike(prev => prev === "S" ? "N" : "S")}
+                type={like === "S" ? "danger" : "normal"} 
+                stylingMode="text" 
+                text="Favoritos"
+                width={145}
+                icon="like"/>
         </div>
 
         <ShowCaseList/>

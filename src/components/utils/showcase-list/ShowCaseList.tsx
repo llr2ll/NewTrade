@@ -7,7 +7,7 @@ import { useContext } from "react"
 import './ShowCaseList.scss'
 
 export function ShowCaseList(){
-    const { neighborhoodRef, stateRef, storeRef, typeRef, cityRef, showCaseListRef } = useContext(ShowCaseContext);
+    const { neighborhoodRef, stateRef, storeRef, typeRef, cityRef, showCaseListRef, like } = useContext(ShowCaseContext);
     
     function MountFilter(){
         const neighborhood =  neighborhoodRef.current ? neighborhoodRef.current.instance.option("value") : null
@@ -18,7 +18,9 @@ export function ShowCaseList(){
 
         let filter:FilterDescriptor = []
 
-        if(type !== null) filter.push(["TIPO_COMPOSICAO_TRADE", "=", type])  
+
+        if(like === "S") filter.push(["FAVORITO", "=", like])
+        if(type !== null) { like === "S" && filter.push("AND"); filter.push(["TIPO_COMPOSICAO_TRADE", "=", type]) }
         if(state !== null) { type !== null && filter.push("AND"); filter.push(["ESTADO", "=", state]) }
         if(city !== null) filter.push("AND", ["CIDADE", "=", city])  
         if(neighborhood !== null) filter.push("AND", ["BAIRRO", "=", neighborhood]) 
