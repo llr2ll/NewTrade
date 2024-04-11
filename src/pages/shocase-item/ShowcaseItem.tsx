@@ -1,17 +1,19 @@
 import Form, { ButtonItem, GroupItem, Item, RequiredRule, SimpleItem } from "devextreme-react/cjs/form"
-import { Button, DropDownButton, ScrollView } from "devextreme-react"
+import { Button, DropDownButton, Popup, ScrollView } from "devextreme-react"
 import { FavoriteItem, ShareItem } from "../../environment"
 import { useLocation, useNavigate } from "react-router-dom"
 import { getCustomStore, modal } from "../../devextreme"
-import { IShowCaseItem } from "../../types"
+import { IPopup, IShowCaseItem } from "../../types"
+import { PreContract } from "../../components"
 import { useRef, useState } from "react"
 import "./ShowcaseItem.scss"
 
 export function ShowCaseItem(){
+    const [ data, setData ] = useState<IShowCaseItem>(useLocation().state)
     const [ contract, setContract ] = useState<number | null>(null)
-    const [ PIN, setPIN ] = useState<number | null>(null)
-    let data:IShowCaseItem = useLocation().state
     const [ like, setLike ] = useState<string>(data.FAVORITO)
+    const [ PIN, setPIN ] = useState<number | null>(null)
+    const popup:IPopup = useRef(null as any)
     const navigate = useNavigate()
     const formRef:any = useRef()
     
@@ -24,7 +26,7 @@ export function ShowCaseItem(){
             getCustomStore({
                 post: {
                     postCustomActionName:   "TPC_GerarComposicaoContrato",
-                    postErrorMessage:       "Ocorreu um erro desconhecido durante a contratação."
+                    postErrorMessage:       "Ocorreu um erro durante a contratação."
                 }
             })
                 .update(undefined, { ...data, 'CONTRATO': contract, 'PIN': PIN })
@@ -64,7 +66,7 @@ export function ShowCaseItem(){
                                     icon="like"
                                     width={35}/>
 
-                            <Button icon="share" stylingMode="text" width={35} height={35} onClick={ShareItem}/>
+                            <Button icon="share" stylingMode="text" width={35} height={35} onClick={() => ShareItem(data)}/>
 
                             <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
                                     { text: 'Profile', icon: 'user' },
@@ -133,9 +135,10 @@ export function ShowCaseItem(){
                         <GroupItem colSpan={2} colCount={2}>
                             <ButtonItem colSpan={1} buttonOptions={{ text: "Detalhes", type: "default", width: "100%", onClick: openDetails }}/>
                             <ButtonItem buttonOptions={{ 
-                                            disabled: !(data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S"),
-                                            text: data.CONTRATO === "S" ? "Contratar" : "Pré-contratar", 
-                                            useSubmitBehavior: true, 
+                                            onClick: data.PERMITIR_CRIAR_PRE_CONTRATO === "S" ? () => popup.current?.instance.show() : () => {},
+                                            disabled: !( data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S" ),
+                                            text: data.CONTRATO === "S" ? "Contratar" : "Criar pré-contrato",
+                                            useSubmitBehavior: data.PERMITIR_CRIAR_PRE_CONTRATO === "N",
                                             type: "success", 
                                             width: "100%",
                                         }}
@@ -156,6 +159,17 @@ export function ShowCaseItem(){
                     </GroupItem>
                 </Form>
             </main>
+
+            <Popup onHiding={() => popup.current?.instance.hide()}
+                   title="Criação de pré-contrato" 
+                   dragEnabled={false} 
+                   showCloseButton 
+                   height={215}
+                   ref={popup} 
+                   width={700}>
+
+                <PreContract data={data} setData={setData} popup={popup}/>
+            </Popup>
         </section>
     </ScrollView>
 }

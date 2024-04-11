@@ -108,10 +108,13 @@ html { scroll-behavior: smooth }
 
 .dx-field-item-label-location-top { padding-inline-start: 0 !important }
 
-.dx-tileview-wrapper { 
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.dx-scrollview-content { position: relative !important }
+
+.dx-list .dx-empty-message { 
+  text-align: center !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
 
 .dx-button-has-text .dx-button-content .dx-button-text { margin: 6px 5px 5px 5px }

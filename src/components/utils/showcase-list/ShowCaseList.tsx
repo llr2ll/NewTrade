@@ -1,8 +1,8 @@
 import { FilterDescriptor } from "devextreme/data/index"
 import { ShowCaseListItem } from "./ShowCaseListItem"
-import { getCustomStore } from "../../../devextreme"
 import { ShowCaseContext } from "../../../Context"
-import { List, TileView } from "devextreme-react"
+import { ShowCaseDs } from "../../../environment"
+import { List } from "devextreme-react"
 import { useContext } from "react"
 import './ShowCaseList.scss'
 
@@ -27,20 +27,12 @@ export function ShowCaseList(){
         return filter.length === 0 ? undefined : filter 
     }
 
-    const ShowCaseDs = getCustomStore({
-        get: {
-            getErrorMessage:  "Falha ao trazer os items",
-            dataSourceOptions: { filter: MountFilter() },
-            customViewName:   "TPC_Trade"
-        }
-    })
-
     return <List height="calc(100% - var(--content-padding) - 32px)"
-                 style={{margin: "15px 0"}}
+                 dataSource={ShowCaseDs(MountFilter())} 
                  itemRender={ShowCaseListItem}
                  pageLoadMode="scrollBottom"
+                 style={{margin: "15px 0"}}
                  className="showcase-list"
                  useNativeScrolling={true}
-                 dataSource={ShowCaseDs} 
                  ref={showCaseListRef}/>  
 }

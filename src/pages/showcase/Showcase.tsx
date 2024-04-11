@@ -1,9 +1,10 @@
-import { IList, ISelectBox, ITileView, InitialFilters } from "../../types";
+import { IList, ISelectBox, IShowCaseItem, InitialFilters } from "../../types";
 import { ShowCaseList, ShowCaseSelects } from "../../components";
 import { Button, ScrollView } from "devextreme-react";
-import { ShowCaseContext } from "../../Context";
 import { useEffect, useRef, useState } from "react";
+import { ShowCaseContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
+import { ShowCaseDs } from "../../environment";
 
 export function Showcase() {
   const [filters, setFilters] = useState(InitialFilters)
@@ -16,8 +17,13 @@ export function Showcase() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //const Data = { InResultId: undefined }
-    //navigate(`/showcase-item/${Data.InResultId}`, { state: Data })
+    let Id = window.localStorage.getItem("Fragment")
+
+    if(Id){
+      ShowCaseDs(["ACAO_TRADE_PROVISAO", "=", Id])
+        .load()
+        .then((res: any) => navigate(`/showcase-item/${res.IShowCaseItem}`, { state: res }))
+    } 
   }, [])
 
   return <ScrollView className='view-wrapper-scroll page-padding'>

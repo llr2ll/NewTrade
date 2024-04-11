@@ -1,4 +1,4 @@
-import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, SelectBox, TileView } from 'devextreme-react';
+import { DataGrid, DropDownBox, Form, Gallery, List, LoadPanel, Popup, SelectBox, TileView } from 'devextreme-react';
 import { DataSourceOptions } from 'devextreme/data/data_source';
 import { TreeViewTypes } from 'devextreme-react/tree-view';
 import { ButtonTypes } from 'devextreme-react/button';
@@ -56,6 +56,7 @@ export type IGalery = React.MutableRefObject<Gallery>
 export type IDevexForm = React.MutableRefObject<Form>
 export type IForm = React.RefObject<HTMLFormElement>
 export type ITileView = React.RefObject<TileView>
+export type IPopup = React.RefObject<Popup>
 export type IList = React.RefObject<List>
 
 export interface OrderType {

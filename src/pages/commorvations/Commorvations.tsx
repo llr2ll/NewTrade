@@ -20,26 +20,31 @@ export function Commorvations(){
         }
     })
 
-    function print(){
+    async function print(){
         const doc = new jsPDF();
-
-        function addImageFromURL(url, x, y, width, height) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.src = url;
-                img.onload = () => { doc.addImage(url, 'JPEG', x, y, width, height); resolve(true) } 
-                img.onerror = error => reject(error)
-            });
-        }
+        const pageWidth = doc.internal.pageSize.getWidth()
+        let hasImage = false
 
         try {
-            commorvationsDs
-                .load()
-                .then(async (res: any) => {
-                    for(let i = 0; i < res.length; i++) { addImageFromURL(await res[i].IMAGEM.match(/src="([^"]*)"/)[1], 10, 10, 350, 350) }
+            const res:any = await commorvationsDs.load();
+            
+            for (let i = 0; i < res.length; i++) {
+                const img = new Image();
+                
+                img.src = res[i].IMAGEM.match(/src="([^"]*)"/)[1];
+                
+                await new Promise((resolve, reject) => {
+                    img.onload = () => resolve(true);
+                    img.onerror = err => reject(err);
+                });
+                
+                if (hasImage) { doc.addPage() }
 
-                    await doc.save('output.pdf')
-                })
+                doc.addImage(img, 'JPEG', 0, 0, pageWidth, (img.height * pageWidth) / img.width);
+                hasImage = true;
+            }
+
+            doc.save('output.pdf');
         } catch (error) { console.error('Erro ao criar o PDF:', error) }
     }   
 
