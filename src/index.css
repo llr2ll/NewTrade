@@ -113,3 +113,5 @@ html { scroll-behavior: smooth }
   align-items: center;
   display: flex;
 }
+
+.dx-button-has-text .dx-button-content .dx-button-text { margin: 6px 5px 5px 5px }

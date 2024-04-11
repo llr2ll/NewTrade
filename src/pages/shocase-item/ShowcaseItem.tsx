@@ -117,7 +117,7 @@ export function ShowCaseItem(){
                                     name="NUMERO_CONTRATO" 
                                     colSpan={2}>
 
-                            <RequiredRule message="Preencha o número do contrato" />
+                            <RequiredRule message="Preencha o número do contrato"/>
                         </SimpleItem>
 
                         <SimpleItem editorOptions={{ min: 0, step: 0, onValueChanged: e => setPIN(e.value), value: PIN }}
@@ -127,13 +127,13 @@ export function ShowCaseItem(){
                                     colSpan={2} 
                                     name="PIN">
 
-                            <RequiredRule message="Insira o código PIN" />
+                            <RequiredRule message="Insira o código PIN"/>
                         </SimpleItem>
 
                         <GroupItem colSpan={2} colCount={2}>
                             <ButtonItem colSpan={1} buttonOptions={{ text: "Detalhes", type: "default", width: "100%", onClick: openDetails }}/>
                             <ButtonItem buttonOptions={{ 
-                                            visible: data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S",
+                                            disabled: !(data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S"),
                                             text: data.CONTRATO === "S" ? "Contratar" : "Pré-contratar", 
                                             useSubmitBehavior: true, 
                                             type: "success", 

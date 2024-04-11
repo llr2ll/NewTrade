@@ -1,6 +1,6 @@
 import { GroupItem, Item } from "devextreme-react/cjs/form"
 import { useLocation, useNavigate } from "react-router-dom"
-import { Button, Form, List, TileView } from "devextreme-react"
+import { Button, Form, List } from "devextreme-react"
 import { getCustomStore } from "../../devextreme"
 import { IContractItem } from "../../types"
 import "./ContractListItens.scss"
@@ -20,8 +20,8 @@ export function ContractItens(){
     })
 
     return <section className="page-padding">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Button onClick={() => navigate(-1)} stylingMode="text" icon="arrowleft" height={35} width={35}/>
+        <div className="contract-list-header">
+            <Button onClick={() => navigate(-1)} text="Itens Contratados" stylingMode="text" icon="arrowleft" height={35}/>
 
             <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={() => contractItens.current?.instance.repaint()} stylingMode='text'/>
         </div>
@@ -32,6 +32,7 @@ export function ContractItens(){
               pageLoadMode="scrollBottom"
               itemRender={ContractItem}
               useNativeScrolling={true}
+              style={{ margin: 15 }}
               ref={contractItens}/>
     </section>
 }

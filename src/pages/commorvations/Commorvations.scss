@@ -1,0 +1,7 @@
+
+.commorvations-list .dx-list-items{
+    grid-template-columns: repeat(auto-fit, 370px);
+    justify-content: space-evenly;
+    grid-template-rows: 420px;
+    display: grid;
+}

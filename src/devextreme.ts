@@ -1,7 +1,7 @@
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import ODataStore from 'devextreme/data/odata/store';
-import { developmentMode, localToken } from './environment';
+import { localToken } from './environment';
 import notify from "devextreme/ui/notify";
 import { GetCustomStore } from './types';
 
@@ -22,12 +22,13 @@ export function getCustomStore({ get, post, remove }: GetCustomStore): CustomSto
   const customAction = name => `https://portal.cosmospro.com.br:9191/api/ExecuteCustomAction/ExecuteAction?ActionName=${name}`
   const customView = name => `https://newapi.cosmospro.com.br/api/CustomViews(Name='${name}')/ExecuteAndReceiveData`
   const { customViewName, getErrorMessage, dataSourceOptions, keyExpr } = get || {}
+  const cacheToken = window.localStorage.getItem("Token") 
 
   const dataSource = (url: string, errorMessage, payload?: any, successMessage?: string): DataSource => new DataSource({
     store: new ODataStore({
       beforeSend: event => {
         event.headers = {
-          "Authorization": `Bearer ${developmentMode() ? localToken : window.localStorage.getItem("Token")}`, 
+          "Authorization": `Bearer ${cacheToken ? cacheToken : localToken}`, 
           "api-version": 1 
         }
         payload && ( 
