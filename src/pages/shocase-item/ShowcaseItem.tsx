@@ -68,12 +68,12 @@ export function ShowCaseItem(){
 
                             <Button icon="share" stylingMode="text" width={35} height={35} onClick={() => ShareItem(data)}/>
 
-                            <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
+                            {/* <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
                                     { text: 'Profile', icon: 'user' },
                                     { text: 'Messages', icon: 'email', badge: '5' },
                                     { text: 'Friends', icon: 'group' },
                                     { text: 'Exit', icon: 'runner' },
-                                ]}/>
+                                ]}/> */}
                         </Item>
                     </GroupItem>
         

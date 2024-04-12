@@ -22,12 +22,12 @@ export function ShowCaseListItem(data: IShowCaseItem){
             
             <p>{data.TIPO_COMPOSICAO}</p>
         
-            <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
+            {/* <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
                     { text: 'Profile', icon: 'user' },
                     { text: 'Messages', icon: 'email', badge: '5' },
                     { text: 'Friends', icon: 'group' },
                     { text: 'Exit', icon: 'runner' },
-                ]}/>
+                ]}/> */}
         </header>
         <main>
             <img src={data.IMAGEM}/>
