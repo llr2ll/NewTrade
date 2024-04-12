@@ -46,8 +46,8 @@ $theme: null !default;
   --cards-background: #FFF;
   --calendar-width: 292px;
   --content-padding: 16px;
-  --footer-height: 70px;
   --base-bg: #{$base-bg};
+  --footer-height: 70px;
 
   @if $theme == dark {
     --side-panel-background: var(--base-bg-darken-5);
@@ -57,6 +57,7 @@ $theme: null !default;
     --card-hover: #14344399;
     --accent-color: #87f275; 
     --base-text-color: #fff;
+    --selection-bg: #2f3d2c;
   } @else {
     --side-panel-background: #f9f8f8;
     --subtitle-text-color: #414141;
@@ -64,5 +65,6 @@ $theme: null !default;
     --base-text-color: #414141;
     --accent-color: #286b2a;
     --card-hover: #f0f9fd;
+    --selection-bg: #e3ffe0;
   }
 }

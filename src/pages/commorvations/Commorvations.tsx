@@ -80,7 +80,7 @@ export function Commorvations(){
                 <Item dataField="BAIRRO" colSpan={1} label={{ text: "Bairro:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
                 <Item dataField="COMPLEMENTO" colSpan={1} label={{ text: "Complemento:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
                 <Item dataField="QUANTIDADE" colSpan={1} label={{ text: "Quantidade:" }} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                <Item dataField="VALOR" colSpan={2} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
+                <Item dataField="VALOR" colSpan={2} label={{ text: "Valor:" }} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
                 <Item colSpan={2}>
                     <List className="commorvations-list"
                           dataSource={commorvationsDs} 

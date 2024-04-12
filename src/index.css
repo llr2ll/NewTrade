@@ -118,3 +118,7 @@ html { scroll-behavior: smooth }
 }
 
 .dx-button-has-text .dx-button-content .dx-button-text { margin: 6px 5px 5px 5px }
+
+.dx-form-group-caption { font-weight: bold }
+
+.dx-item.dx-state-hover { background-color: var(--selection-bg) !important }

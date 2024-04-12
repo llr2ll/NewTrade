@@ -1,9 +1,9 @@
 import Form, { ButtonItem, GroupItem, Item, RequiredRule, SimpleItem } from "devextreme-react/cjs/form"
-import { Button, DropDownButton, Popup, ScrollView } from "devextreme-react"
-import { FavoriteItem, ShareItem } from "../../environment"
+import { Button, Popup, ScrollView } from "devextreme-react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { getCustomStore, modal } from "../../devextreme"
 import { IPopup, IShowCaseItem } from "../../types"
+import { FavoriteItem } from "../../environment"
 import { PreContract } from "../../components"
 import { useRef, useState } from "react"
 import "./ShowcaseItem.scss"
@@ -65,15 +65,6 @@ export function ShowCaseItem(){
                                     height={35} 
                                     icon="like"
                                     width={35}/>
-
-                            <Button icon="share" stylingMode="text" width={35} height={35} onClick={() => ShareItem(data)}/>
-
-                            {/* <DropDownButton showArrowIcon={false} icon="overflow" dropDownOptions={{width: 213}} stylingMode="text" items={[
-                                    { text: 'Profile', icon: 'user' },
-                                    { text: 'Messages', icon: 'email', badge: '5' },
-                                    { text: 'Friends', icon: 'group' },
-                                    { text: 'Exit', icon: 'runner' },
-                                ]}/> */}
                         </Item>
                     </GroupItem>
         
@@ -107,7 +98,7 @@ export function ShowCaseItem(){
                                     colSpan={2}/>
                         
                         <SimpleItem editorOptions={{ readOnly: true }}
-                                    label={{text: "Descricao"}} 
+                                    label={{text: "Descrição"}} 
                                     editorType="dxTextArea" 
                                     dataField="DESCRICAO" 
                                     colSpan={2}/>
@@ -154,8 +145,8 @@ export function ShowCaseItem(){
                 <Form formData={data} className="show-case-item-form" style={{ margin: "5px 0" }}>
                     <GroupItem caption="Informações" colSpan={2}>
                         <Item dataField="TIPO_COMPOSICAO" label={{text: "Tipo da Composição"}} colSpan={2} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                        <Item dataField="QUANTIDADE" colSpan={2} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
-                        <Item dataField="VALOR" colSpan={2} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
+                        <Item dataField="QUANTIDADE" label={{text: "Quantidade"}} colSpan={2} editorType="dxTextBox" editorOptions={{ readOnly: true }}/>
+                        <Item dataField="VALOR" label={{text: "Valor"}} colSpan={2} editorType="dxNumberBox" editorOptions={{ readOnly: true, format: "R$ #,##0.00" }}/>
                     </GroupItem>
                 </Form>
             </main>

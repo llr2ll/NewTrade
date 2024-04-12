@@ -47,7 +47,7 @@ export function Showcase() {
         <div style={{ display: "flex", alignItems: "center" }}>
           <ShowCaseSelects/>
 
-          <Button icon="refresh" type="default" style={{ marginLeft: 10 }} onClick={() => showCaseListRef.current?.instance.repaint()} stylingMode='text'/>
+          <Button icon="refresh" type="default" style={{ margin: "0 5px 0 10px" }} onClick={() => showCaseListRef.current?.instance.repaint()} stylingMode='text'/>
           
           <Button onClick={() => setLike(prev => prev === "S" ? "N" : "S")}
                 type={like === "S" ? "danger" : "normal"} 

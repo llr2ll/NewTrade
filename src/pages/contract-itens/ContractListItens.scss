@@ -1,8 +1,9 @@
 .contract-item-card{
     border: 1px solid var(--border-color) !important;
-    border-radius: 5px !important;
     border-bottom: 10px solid var(--accent-color);
+    border-radius: 5px !important;
     border-radius: 0 0 5px 5px;
+    background: var(--base-bg);
     padding: 10px;
     display: flex;
     height: 100%; 

@@ -61,7 +61,7 @@ export const SideNavigationMenu = (props: React.PropsWithChildren<SideNavigation
     <footer className='footer'> 
       Copyright © {new Date().getFullYear()} 
         <br /> 
-        <img alt='logo' width={13} height={13} src={CosmosIcon}/> Cosmos Pro MMC Inc.
+        <img alt='logo' width={13} height={13} src={CosmosIcon}/> Cosmos Pro Trade Marketing Inc.
     </footer>
   </div>
 };

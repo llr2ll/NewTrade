@@ -7,7 +7,7 @@ import "./ContractListItem.scss"
 export function ContractListItem(data: IContract){
     const navigate = useNavigate()
 
-    return <section className="contract-item" onClick={() => navigate(`/contract-itens/${data.InResultId}`, { state: data })}>
+    return <section className="contract-item" onDoubleClick={() => navigate(`/contract-itens/${data.InResultId}`, { state: data })}>
         <div><i className="dx-icon-textdocument"></i></div>
 
         <Form formData={data} className="contract-item-form">
