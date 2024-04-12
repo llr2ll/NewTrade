@@ -26,7 +26,8 @@ function renderApp(){
 function handleToken(event: MessageEvent){
     if(event.data.token){ window.localStorage.setItem("Token", event.data.token); renderApp() }
 
-    console.log(event)
+    console.log("event", event)
+    console.log("location", window.location)
 
     if(event.data.fragment) {
         console.log("Fragmento", event.data.fragment, event)
@@ -39,4 +40,4 @@ if(/^https:\/\/legendary-space-eureka-p6gg7jvrqjp364v.*\.github\.dev\//.test(win
 else{
     window.addEventListener("message", handleToken, false)
     setInterval(() => { sendLoadCompleteMessage() }, 55 * 60 * 1000)
-}
+}   

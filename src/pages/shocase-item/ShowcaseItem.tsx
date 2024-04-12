@@ -135,10 +135,10 @@ export function ShowCaseItem(){
                         <GroupItem colSpan={2} colCount={2}>
                             <ButtonItem colSpan={1} buttonOptions={{ text: "Detalhes", type: "default", width: "100%", onClick: openDetails }}/>
                             <ButtonItem buttonOptions={{ 
-                                            onClick: data.PERMITIR_CRIAR_PRE_CONTRATO === "S" ? () => popup.current?.instance.show() : () => {},
+                                            onClick: data.CONTRATO === "N" ? () => popup.current?.instance.show() : () => {},
                                             disabled: !( data.CONTRATO === "S" || data.PERMITIR_CRIAR_PRE_CONTRATO === "S" ),
                                             text: data.CONTRATO === "S" ? "Contratar" : "Criar pré-contrato",
-                                            useSubmitBehavior: data.PERMITIR_CRIAR_PRE_CONTRATO === "N",
+                                            useSubmitBehavior: data.CONTRATO === "S",
                                             type: "success", 
                                             width: "100%",
                                         }}

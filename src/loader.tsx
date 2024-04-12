@@ -1,16 +1,16 @@
 export function Loader(){
     return  <div style={{
-                    transform: "translate(926px, 449px)",
                     transition: "all 0s ease 0s",
                     maxHeight: "60px", 
                     maxWidth: "60px", 
                     height: "60px",
-                    width: "60px", 
+                    width: "60px",
                     zIndex: 1505,
-                    left: "0px", 
-                    top: "0px", 
+                    left: "50%",
+                    top: "50%"
                  }}
                   className="dx-overlay-content dx-loadpanel-content">
+                    
         <div className="dx-loadpanel-content-wrapper">
             <div className="dx-loadpanel-indicator dx-loadindicator dx-widget">
                 <div className="dx-loadindicator-wrapper">
