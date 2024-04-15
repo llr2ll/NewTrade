@@ -104,7 +104,7 @@ export function ShowCaseItem(){
                                     colSpan={2}/>
 
                         <SimpleItem editorOptions={{ min: 0, step: 0, onValueChanged: e => setContract(e.value), value: contract }}
-                                    label={{text: "Nº Do Contrato"}} 
+                                    label={{text: "Nº do Contrato"}} 
                                     dataField="NUMERO_CONTRATO" 
                                     editorType="dxNumberBox" 
                                     name="NUMERO_CONTRATO" 

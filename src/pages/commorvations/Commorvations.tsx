@@ -2,7 +2,7 @@ import Form, { ButtonItem, GroupItem, Item } from "devextreme-react/cjs/form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IContractItem, IList } from "../../types";
 import { getCustomStore } from "../../devextreme";
-import { List, TextBox } from "devextreme-react";
+import { DateBox, List, TextBox } from "devextreme-react";
 import { useRef } from "react";
 import "./Commorvations.scss";
 import jsPDF from 'jspdf';
@@ -98,8 +98,11 @@ export function Commorvations(){
 
 const Commorvation = item => <div>
     <img width={349} height={350} src={item.IMAGEM.match(/src="([^"]*)"/)[1]} style={{borderRadius: "5px 5px 0 0"}}/>
+    
     <div style={{display: "flex", marginTop: 10 }}>
-        <TextBox text={item.NOME} style={{ marginRight: 10 }} label="Nome" width="100%"/>
-        <TextBox text={item.LATITUDE + " / " + item.LONGITUDE} label="Latitude / Longitude" width="100%"/>
+        <DateBox value={item.DATA_COMPROVACAO} label="Data da Comprovação" style={{ marginRight: 10 }} width="50%" readOnly/>
+        <TextBox text={item.LATITUDE + " / " + item.LONGITUDE} label="Latitude / Longitude" width="50%" readOnly/>
     </div>
+    
+    <TextBox text={item.NOME} style={{ marginTop: 10 }} label="Nome" width="100%" readOnly/>
 </div>
