@@ -53,7 +53,7 @@ export function getCustomStore({ get, post, remove }: GetCustomStore): CustomSto
     pageSize: 0, // Gambiarra precisa arrumar *( Bug na paginação )
     ...dataSourceOptions
   })
-
+  console.log(get, dataSource)
   return new CustomStore({
     key: get?.keyExpr,
 

@@ -12,7 +12,7 @@ export const Content = () => {
       .load()
       .then((res: any) => {    
         let reports:any = Navigation[2]
-
+console.log(res,reports)
         for (let i = 0; i < res.length; i++) {
           reports.items.push({
             text: res[i].text,

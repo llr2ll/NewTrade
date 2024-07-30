@@ -1,10 +1,10 @@
-import { Showcase, Contracts, ShowCaseItem, Commorvations, ContractItens } from './pages';
+import { Showcase, Contracts, ShowCaseItem, Commorvations, ContractItens, Planograma } from './pages';
 import { IShowCaseItem, Report, SideNavToolbarProps } from './types';
 import { withNavigationWatcher } from './contexts/navigation';
 import { getCustomStore } from './devextreme';
 import packageJson from "../package.json";
 
-export const localToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQxNzQzMjM1REFEQjgzQzExNTA4MEYxNjk2NjJCNzU0IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3MTMxODgwMTcsImV4cCI6MTcxMzE5MTYxNywiaXNzIjoiaHR0cHM6Ly9hdXRoLmNvc21vc3Byby5jb20uYnIiLCJhdWQiOiJodHRwczovL2F1dGguY29zbW9zcHJvLmNvbS5ici9yZXNvdXJjZXMiLCJjbGllbnRfaWQiOiJKYXZhc2NyaXB0Q2xpZW50Iiwic3ViIjoiMjkwMjg3IiwiYXV0aF90aW1lIjoxNzEzMTg3Nzg5LCJpZHAiOiJsb2NhbCIsIkxvZ2luU2Vzc2lvbklEIjoiNjlkOTQxOTYtN2E4MC00YjM3LWFkOWQtZGU4OWE1OWYzMzBiIiwiTmFtZSI6ImFkbWluQGZhcm1hLmNvbS5iciIsIkZyaWVuZGx5TmFtZSI6IkFkbWlsc29uIE1hcnRpbnMgTGltYSIsIlRlbmFudElkIjoiMTAyODQiLCJQcm9maWxlIjoiMSIsIkpvYlJvbGUiOiIxIiwiSW5pdGlhbHMiOiJBTCIsIlVzZXJJZGVudGlmaWNhdGlvbkNoYXQiOiJUSWQtMTAyODQ6VUlkLTI5MDI4NyIsIlVzZXJDaGF0U2lnbmF0dXJlIjoiMGFkODBhZGMyOTMwMGQ2NmJhNjI3NjAyMjI1MDRhNDJhMDc0NDZhNDQ5YzhmYzFkYzE0ZTc2OWYwY2Y4MGJhNyIsIldlZWtlbmRTY2FsZSI6IjEiLCJVc2VyUGljdHVyZSI6IjdjYzk0YzY5LWQxNmEtNDdlMS1iMDNjLTgzODU4NWU4NzQyMy5wbmciLCJyb2xlIjoiYWRtaW4iLCJMb2dvIjoiYThlYmM1OTQtNDU1ZC00MmVjLWIxMmUtMGNkNzBkMmM0NTQwLnBuZyIsIk1haW5Db2xvciI6IiMzMjVDQTUiLCJGb250Q29sb3IiOiIjZmZmZmZmIiwiVGVuYW50TmFtZSI6IkZhcm1hIFRyZWluYW1lbnRvIiwiVGVuYW50S2V5IjoiRkFSIiwiQnJhbmNoIjoiMSIsIkVtYWlsIjoiYWRtaW5AZmFybWEuY29tLmJyIiwianRpIjoiMjkyOTMyNkU5RkYxMEJDN0FCMDE3MDdGRkU4RTMzRDgiLCJzaWQiOiI0Qzg4MDUzM0I4N0U1MDYwQjRFMUU3N0FDRjc5ODQyOSIsImlhdCI6MTcxMzE4ODAxNywic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsImVtYWlsIiwiV0VCQVBJUE9SVEFMIiwiQ29zbW9zUHJvV2ViQXBpIiwiSWRlbnRpdHlTZXJ2ZXJBcGkiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl19.UN0GjToSdRI13YcP3TD76JnFkvjd0LyLbzIrEs7qcFyg1HxN9FV0VPWBMLn_xQANuW5kVbrGIYJW2VxTivQ6kXGIm59Gb15c9w4yv70kLxCFyRYfgrqaurJaaN_a-SaQlKtwBNim3RDIxjgDKxOaNc256GDfCtkJ_j9DtodiETd6DLdz6aXYkszNJxaeNhi-adqsaO7WKlSDDeCij5mdCLVEOr-Pj0M3UyQ3ovAwEwxmvLWVY-fDxs_NGi7RGgxoSvz2NZUklDMEwnoDxsLmyfKyv6Nq8YMRH72rPMO6cP1ZtgBSGwWuKr1zN0Tk3XK4LFkSzyREGaFfZ07bFIFf6g"
+export const localToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQxNzQzMjM1REFEQjgzQzExNTA4MEYxNjk2NjJCNzU0IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3MjIzNzQ0MTcsImV4cCI6MTcyMjM3ODAxNywiaXNzIjoiaHR0cHM6Ly9hdXRoLmNvc21vc3Byby5jb20uYnIiLCJhdWQiOiJodHRwczovL2F1dGguY29zbW9zcHJvLmNvbS5ici9yZXNvdXJjZXMiLCJjbGllbnRfaWQiOiJKYXZhc2NyaXB0Q2xpZW50Iiwic3ViIjoiMzI0OTUzIiwiYXV0aF90aW1lIjoxNzIyMzY1NTY5LCJpZHAiOiJsb2NhbCIsIkxvZ2luU2Vzc2lvbklEIjoiMThlZDVlODQtZGRmYS00MjEzLTk4MTktOWRiMDBmMWU0MDE1IiwiTmFtZSI6ImFkbWluQG5hdHVzZmFybWEuY29tLmJyIiwiRnJpZW5kbHlOYW1lIjoiQWRtaW5pc3RyYWRvciIsIlRlbmFudElkIjoiMTAzMTkiLCJQcm9maWxlIjoiMSIsIkpvYlJvbGUiOiIxIiwiSW5pdGlhbHMiOiJBIiwiVXNlcklkZW50aWZpY2F0aW9uQ2hhdCI6IlRJZC0xMDMxOTpVSWQtMzI0OTUzIiwiVXNlckNoYXRTaWduYXR1cmUiOiI3NDNlZDczNzA3MTNmNWVhZTM1MWU2YjkzMjk5MjExMTYwNmZlZGQ1MzA0MGY2NzJiMTVkMzkzNjVjOWU5NTkyIiwiV2Vla2VuZFNjYWxlIjoiIiwiVXNlclBpY3R1cmUiOiIiLCJyb2xlIjoiYWRtaW4iLCJMb2dvIjoiYjZjMmNmYjItOGQwZS00OWE3LWFjMzEtYmM4ZDA2ZGRhMWMyLnBuZyIsIk1haW5Db2xvciI6IiMwOTc4YmQiLCJGb250Q29sb3IiOiIjZmZmZmZmIiwiVGVuYW50TmFtZSI6Ik5hdHVzRmFybWEiLCJUZW5hbnRLZXkiOiJOVEYiLCJCcmFuY2giOiIiLCJFbWFpbCI6ImFkbWluQG5hdHVzZmFybWEuY29tLmJyIiwianRpIjoiRjcyQzYwMEZFOUYwNjg2NDdBMTFDNTkxNkRGODA4RUEiLCJzaWQiOiJEQjA3QUYwMUMxRTJCQ0YyMzM5Nzg4MTQyREI0QTU4NCIsImlhdCI6MTcyMjM3NDQxNywic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsImVtYWlsIiwiV0VCQVBJUE9SVEFMIiwiQ29zbW9zUHJvV2ViQXBpIiwiSWRlbnRpdHlTZXJ2ZXJBcGkiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl19.MgnD0Bnv41yvCLATDKqazBSVp9HITZKgK3kmAPSP9qtQ6TWULbAd7b78JHhhDFA1n8S8zN19ws6fBGc45PERKPxL6s3nZoA0IDon2ABkw0wwPFXBCjOpJONE4YGJ3l75KIRpUOrd974H6IS-cXoCYpdyVUPF3RQIhtxTTK-mjX4RzJ7tvKKs_Sf76a8pqYiAMJf8S4haBPdHGkhPQzG9h-IUbuvb_rymfek_zgoxZrDuafSg-hqhgRBwMzt-Z7IgOHMVS66aRoCyoDLfHi3ddisJh9XSrDmRsnk4l4TaaLFqQ2v53_NjR6swK891PYm7Z2fBrX0icVqpM4UDjGUfiQ"
 export const appInfo:SideNavToolbarProps = { title: 'Trade Marketing', version: packageJson.version }
 
 const routes = [
@@ -12,6 +12,7 @@ const routes = [
   { path: '/contract-itens/:id', element: ContractItens },
   { path: '/showcase-item/:id', element: ShowCaseItem },
   { path: '/contracts', element: Contracts },
+  { path: '/planograma', element: Planograma },
   { path: '/showcase', element: Showcase }
 ];
 
@@ -22,7 +23,8 @@ interface Navigation { text: string, icon: string, path: string, items?: Report[
 export const Navigation: Navigation[] = [
   { text: 'Vitrine', icon: 'cart', path: '/showcase' },
   { text: 'Contratos', icon: 'textdocument', path: '/contracts' },
-  { text: "Relatórios", icon: "columnchooser", path: '', items: [] }
+  { text: "Relatórios", icon: "columnchooser", path: '', items: [] },
+  { text: 'Planograma', icon: 'file', path: '/planograma' }
 ]
 
 export function FavoriteItem(data: IShowCaseItem, action, actionParams?: boolean){ 
