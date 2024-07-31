@@ -1,11 +1,35 @@
 .image-container {
     width: 100%;
-    max-width: 400px;
     margin: auto;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
+
 .image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
+    max-width: 800px;
+    max-height: 400px;
+}
+
+.field-planograma{
+    margin: 5px
+}
+
+.card{
+    width: 50%;
+    margin: 5px;
+    background-color:var(--border-color);
+    
+    border-bottom: 1px solid #8E8E8E;
+    // border-radius: 10px;
+
+}
+
+.title-planograma{
+    
+    color: var(--texteditor-edit-color);
+    margin: 0;
+    // border-radius:  10px 10px 0 0;
+    padding: 10px;
+   
 }
