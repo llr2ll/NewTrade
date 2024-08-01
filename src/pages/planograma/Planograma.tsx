@@ -1,5 +1,5 @@
 
-import { Gallery, SelectBox, TextBox } from "devextreme-react";
+import { Gallery, ScrollView, SelectBox, TextBox } from "devextreme-react";
 import './style.scss'
 import { getCustomStore } from "../../devextreme";
 import { useEffect, useMemo, useState } from "react";
@@ -21,8 +21,9 @@ export function Planograma() {
             }
         })
     }, [])
-
+    
     const expositions = useMemo(() => {
+        if(infoStore)
         return getCustomStore({
             get: {
                 customViewName: "TPC_Trade_Planograma_Exposicao",
@@ -33,6 +34,7 @@ export function Planograma() {
     }, [infoStore?.EMPRESA])
 
     const identifications = useMemo(() => {
+        if(expo)
         return getCustomStore({
             get: {
                 customViewName: "TPC_Trade_Planograma_Identificacao",
@@ -43,6 +45,7 @@ export function Planograma() {
     }, [expo?.TIPO_PONTO])
 
     const products = useMemo(() => {
+        if(identity)
         return getCustomStore({
             get: {
                 customViewName: "TPC_Trade_Planograma_Produtos",
@@ -66,12 +69,15 @@ export function Planograma() {
     useEffect(() => {
         setInfoProduct(null)
     }, [identity])
-    console.log(infoStore)
+    
     return <section className='page-padding'>
-        <div style={{ display: 'flex' }}>
+          <ScrollView
+    className="scrollable-list"
+    direction="vertical"
+    showScrollbar="always">
+                <div className="selects-container">
             <SelectBox
                 label="Loja"
-                width={"100%"}
                 className="field-planograma"
                 dataSource={stores}
                 displayExpr={'NOME_REDUZIDO'}
@@ -84,7 +90,6 @@ export function Planograma() {
 
             <SelectBox
                 label="Exposição"
-                width={"100%"}
                 className="field-planograma"
                 dataSource={expositions}
                 displayExpr={'TIPO_PONTO_DESCRICAO'}
@@ -93,11 +98,11 @@ export function Planograma() {
                 onSelectionChanged={(e) => {
                     setExpo(e.selectedItem)
                 }}
+                disabled={!infoStore}
             />
 
             <SelectBox
                 label="Identificação"
-                width={"100%"}
                 className="field-planograma"
                 dataSource={identifications}
                 displayExpr={'PONTO'}
@@ -106,13 +111,13 @@ export function Planograma() {
                 onSelectionChanged={(e) => {
                     setIdentity(e.selectedItem)
                 }}
+                disabled={!expo}
             />
 
         </div>
-        <div style={{ display: 'flex' }}>
+        <div className="selects-container">
             <SelectBox
                 label="Produto"
-                width={"100%"}
                 className="field-planograma"
                 dataSource={products}
                 displayExpr={'PRODUTO_DESCRICAO'}
@@ -121,11 +126,11 @@ export function Planograma() {
                 onSelectionChanged={(e) => {
                     setInfoProduct(e.selectedItem)
                 }}
+                disabled={!identity}
             />
 
             <TextBox
                 label="Corpo"
-                width={"100%"}
                 className="field-planograma"
                 value={infoProduct?.CORPO}
                 readOnly={true}
@@ -133,7 +138,6 @@ export function Planograma() {
 
             <TextBox
                 label="Nivel"
-                width={"100%"}
                 className="field-planograma"
                 value={infoProduct?.NIVEL}
                 readOnly={true}
@@ -141,7 +145,6 @@ export function Planograma() {
 
             <TextBox
                 label="Face"
-                width={"100%"}
                 className="field-planograma"
                 value={infoProduct?.FACE}
                 readOnly={true}
@@ -149,13 +152,12 @@ export function Planograma() {
 
             <TextBox
                 label="Fundo"
-                width={"100%"}
                 className="field-planograma"
                 value={infoProduct?.FUNDO}
                 readOnly={true}
             />
         </div>
-        <section style={{ display: 'flex', justifyContent: 'center' }}>
+        <section className="selects-container">
             {
                 infoProduct &&
                 <article className="card">
@@ -176,5 +178,7 @@ export function Planograma() {
                 </article>
             }
         </section>
+    </ScrollView>
+
     </section>
 }

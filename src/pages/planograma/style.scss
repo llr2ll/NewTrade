@@ -11,8 +11,14 @@
     max-height: 400px;
 }
 
+.selects-container{
+    width: 100vw;
+    display: flex;
+}
+
 .field-planograma{
-    margin: 5px
+    margin: 5px;
+    width: 100%;
 }
 
 .card{
@@ -32,4 +38,14 @@
     // border-radius:  10px 10px 0 0;
     padding: 10px;
    
+}
+
+@media only screen and (max-width: 600px) {
+    .selects-container{
+        flex-direction: column;
+    }
+    .card{
+        width: 100%;
+        overflow: auto; 
+    } 
 }
