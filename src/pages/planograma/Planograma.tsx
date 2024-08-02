@@ -157,7 +157,7 @@ export function Planograma() {
                 readOnly={true}
             />
         </div>
-        <section className="selects-container">
+        <section className="cards-container">
             {
                 infoProduct &&
                 <article className="card">
